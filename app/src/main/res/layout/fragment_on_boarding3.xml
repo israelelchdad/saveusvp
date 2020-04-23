@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.OnBoarding1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:layout_weight="607">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="80"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="242"
+                android:src="@drawable/group"
+               />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="46"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#00b2ab"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_height="0dp"
+            android:layout_weight="70"
+            android:text="@string/f_b3_Notifications_text1" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:layout_height="0dp"
+            android:layout_weight="25"
+            >
+                     <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="#454e6c"
+                        android:id="@+id/fbord3_text_masege"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                         android:layout_alignParentStart="true"
+                        android:layout_height="wrap_content"
+                        android:text="@string/f_b3_time_text2" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textColor="#454e6c"
+                        android:textSize="16sp"
+                        android:layout_toEndOf="@+id/fbord3_text_masege"
+                        android:layout_height="wrap_content"
+                        android:text="@string/f_b3_come_text3" />
+        </RelativeLayout>
+
+
+
+
+    <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="#454e6c"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    android:layout_height="0dp"
+                    android:layout_weight="23"
+                    android:text="@string/f_b3_place_text4"
+                    />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="19"/>
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_weight="25">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="#454e6c"
+                    android:id="@+id/fbord1_text_Updated"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_alignParentStart="true"
+                    android:layout_height="wrap_content"
+                    android:text="@string/f_b3_notificantion_text5" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="#454e6c"
+                    android:textSize="16sp"
+                    android:layout_toEndOf="@+id/fbord1_text_Updated"
+                    android:layout_height="wrap_content"
+                    android:text="@string/f_b3_come_text6" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#454e6c"
+                android:layout_gravity="center"
+                android:textSize="16sp"
+                android:layout_height="0dp"
+                android:layout_weight="23"
+                android:text="@string/f_b3_realy_text7"
+                />
+        <TextView
+                android:layout_width="wrap_content"
+                android:textColor="#454e6c"
+                android:textSize="16sp"
+                android:layout_height="0dp"
+                android:layout_gravity="center"
+                android:layout_weight="25"
+                android:text="@string/fb_3_report_text8"
+                />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="26"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="15">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"/>
+        <Button
+            android:layout_width="12dp"
+            android:id="@+id/f_boarding3_button"
+            android:background="@drawable/circle_butten"
+            android:layout_marginRight="12dp"
+            android:layout_height="12dp" />
+
+        <Button
+            android:layout_width="12dp"
+            android:background="@drawable/circle_butten_gray"
+            android:id="@+id/f_boarding2_button"
+            android:layout_height="12dp"
+            android:layout_marginRight="12dp" />
+
+        <Button
+            android:layout_width="12dp"
+            android:id="@+id/f_boarding1_button"
+            android:layout_height="12dp"
+            android:background="@drawable/circle_butten_gray"
+            android:layout_marginRight="12dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_weight="21"
+        android:layout_height="0dp"/>
+</LinearLayout>

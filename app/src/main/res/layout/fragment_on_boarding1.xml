@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.OnBoarding1">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:layout_weight="607">
+      <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="64"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="258"
+            android:layout_gravity="center"
+            android:src="@drawable/onboaeding1" />
+
+      <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="46"/>
+      <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#00b2ab"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textSize="40sp"
+            android:layout_height="0dp"
+            android:layout_weight="63"
+
+           android:text="@string/f_b1_security_text1" />
+
+       <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="35"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_weight="51"
+                >
+                <TextView
+                    android:id="@+id/fbowerd1_avoid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/f_b1_m_text2"
+                    android:textColor="#454e6c"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:textColor="#454e6c"
+                    android:textStyle="bold"
+                    android:layout_toEndOf="@+id/fbowerd1_avoid"
+                    android:textSize="16sp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/f_b1_she_text3" />
+
+            </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="24"
+            android:layout_gravity="center"
+            android:text="@string/f_b1_now_text4"
+            android:textSize="16sp"
+            android:textColor="#454e6c"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="24"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:text="@string/f_b1_dont_text5"
+            android:textSize="16sp"
+            android:textColor="#454e6c"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="50"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="15">
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"/>
+        <Button
+            android:layout_width="12dp"
+            android:background="@drawable/circle_butten_gray"
+            android:id="@+id/f_boarding3_button"
+            android:layout_marginRight="12dp"
+            android:layout_height="12dp" />
+
+        <Button
+            android:layout_width="12dp"
+            android:background="@drawable/circle_butten_gray"
+            android:id="@+id/f_boarding2_button"
+            android:layout_height="12dp"
+            android:layout_marginRight="12dp" />
+
+        <Button
+            android:layout_width="12dp"
+            android:id="@+id/f_boarding1_button"
+            android:layout_height="12dp"
+            android:background="@drawable/circle_butten"
+            android:layout_marginRight="12dp"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_weight="21"
+        android:layout_height="0dp"/>
+</LinearLayout>

@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SaveUs</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="f_b1_security_text1">פרטיות וביטחון</string>
+    <string name="f_b1_m_text2">מניעת התפשטות הקורונה</string>
+    <string name="f_b1_she_text3">המטרה של כולנו</string>
+    <string name="f_b1_now_text4">עכשיו תוכלו לסייע באופן אקטיבי</string>
+    <string name="f_b1_dont_text5">ובלי חשש לפגיעה בפרטיותכם</string>
+    <string name="f_b2_simple_text1">פשוט ומהיר</string>
+    <string name="f_b3_Notifications_text1">התראות ועדכונים</string>
+    <string name="f_b3_time_text2"> התראה בזמן אמת</string>
+    <string name="f_b3_come_text3">תתקבל במצב בו דיווחתם על</string>
+    <string name="f_b3_place_text4">מיקומכם הנוכחי ויש עליו מידע מעודכן כאזור נגוע</string>
+    <string name="f_b3_notificantion_text5">התראה מתעדכנת</string>
+    <string name="f_b3_come_text6"> תתקבל כאשר אחד מהמקומות</string>
+    <string name="f_b3_realy_text7">שדיווחתם עליהם בזמן אמת או בדיעבד</string>
+    <string name="fb_3_report_text8">ידווח כאזור נגוע</string>
+</resources>
