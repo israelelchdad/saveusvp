@@ -18,4 +18,10 @@
     <string name="f_b3_realy_text7">שדיווחתם עליהם בזמן אמת או בדיעבד</string>
     <string name="fb_3_report_text8">ידווח כאזור נגוע</string>
     <string name="flogin_welcom">ברוכים הבאים</string>
+    <string name="f_login_hinttext_name">שם</string>
+    <string name="f_login_email">דואר אלקטרוני</string>
+    <string name="f_login_phone">מספר טלפון</string>
+    <string name="skip">דלג</string>
+    <string name="registration">הרשמה</string>
+
 </resources>

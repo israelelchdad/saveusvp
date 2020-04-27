@@ -29,6 +29,7 @@
             android:layout_width="wrap_content"
             android:textColor="#00b2ab"
             android:textStyle="bold"
+
             android:layout_gravity="center"
             android:textSize="40sp"
             android:layout_height="0dp"
@@ -52,6 +53,7 @@
                     android:id="@+id/fbowerd1_avoid"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxLines="1"
                     android:layout_alignParentStart="true"
                     android:text="@string/f_b1_m_text2"
                     android:textColor="#454e6c"
@@ -61,6 +63,7 @@
                     android:layout_width="wrap_content"
                     android:textColor="#454e6c"
                     android:textStyle="bold"
+                    android:maxLines="1"
                     android:layout_toEndOf="@+id/fbowerd1_avoid"
                     android:textSize="16sp"
                     android:layout_height="wrap_content"

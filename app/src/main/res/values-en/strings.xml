@@ -19,4 +19,10 @@
     <string name="f_b3_realy_text7">That you reported on in real time or in retrospect</string>
     <string name="fb_3_report_text8">Will be reported as an infected area</string>
     <string name="flogin_welcom">welcome</string>
+    <string name="f_login_hinttext_name">name</string>
+    <string name="f_login_email">email</string>
+    <string name="f_login_phone">phone</string>
+    <string name="skip">skip</string>
+    <string name="registration">registration</string>
+
 </resources>
