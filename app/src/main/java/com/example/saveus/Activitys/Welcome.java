@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Switch;
 
 import com.example.saveus.Adapters.AdapterViewPagerOnB;
+import com.example.saveus.Fragments.LoginF;
 import com.example.saveus.Fragments.OnBoarding1;
 import com.example.saveus.Fragments.OnBoarding2;
 import com.example.saveus.Fragments.OnBoarding3;
@@ -45,6 +46,7 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
         myListFragmentsOnBoarding.add(onBoarding1);
         myListFragmentsOnBoarding.add(onBoarding2);
         myListFragmentsOnBoarding.add(onBoarding3);
+        myListFragmentsOnBoarding.add(new LoginF());
         return myListFragmentsOnBoarding;
     }
     @Override

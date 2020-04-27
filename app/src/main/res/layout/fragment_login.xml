@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Fragments.LoginF">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="0dp"
+        android:layout_weight="60">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="15"/>
+            <ImageView
+            android:layout_width="0dp"
+                android:layout_weight="105"
+            android:layout_height="wrap_content"
+                android:paddingTop="13dp"
+                android:paddingBottom="11.3dp"
+            android:src="@drawable/logo"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="195"/>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="25"
+                android:layout_height="wrap_content"
+                android:paddingTop="17dp"
+                android:paddingBottom="18dp"
+                android:src="@drawable/logovector"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="18"/>
+        </LinearLayout>
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorflogin_welcom"
+        android:layout_marginEnd="0.5dp"
+        android:layout_marginStart="0.5dp"
+        android:layout_weight="104">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:textSize="22sp"
+            android:textColor="@color/flogin_color_welcome"
+            android:text="@string/flogin_welcom"/>
+    </RelativeLayout>
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="11"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="21dp"
+        android:textColor="#051549"
+        android:textSize="15sp"
+        android:text="הבריאות והביטחון שלכם נמצאים בעדיפות עליונה,  "
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+     android:paddingStart="21dp"
+
+        android:textColor="#051549"
+        android:textSize="15sp"
+        android:text="אנחנו כאן לעזור לכם לעקוב אחר הפעילות ולתעד אותה"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="21dp"
+        android:textColor="#051549"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="כל המידע אנונימי לחלוטין אין מה לחשוש  "
+
+        />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="106"-->
+<!--        >-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:orientation="horizontal">-->
+<!--            <View-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="26"/>-->
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_weight="308"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:gravity="center"-->
+<!--               -->
+<!--                android:lineHeight="21sp"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textColor="#051549"-->
+<!--                android:text="הבריאות והביטחון שלכם נמצאים בעדיפות עליונה,-->
+<!--אנחנו כאן לעזור לכם לעקוב אחר הפעילות ולתעד אותה.-->
+<!--כל המידע אנונימי לחלוטין אין מה לחשוש"/>-->
+
+<!--            <View-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="26"/>-->
+
+<!--        </LinearLayout>-->
+
+
+<!--    </LinearLayout>-->
+
+
+
+
+
+
+</LinearLayout>
