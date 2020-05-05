@@ -19,10 +19,25 @@
     <string name="f_b3_realy_text7">That you reported on in real time or in retrospect</string>
     <string name="fb_3_report_text8">Will be reported as an infected area</string>
     <string name="flogin_welcom">welcome</string>
+    <string name="f_login_health_text">Your health and safety is a top priority,</string>
+    <string name="f_login_helpyou_text">We are here to help you track and record the activity.</string>
+    <string name="f_login_enformaion_text">All the information completely anonymous has nothing to fear.</string>
+
     <string name="f_login_hinttext_name">name</string>
     <string name="f_login_email">email</string>
     <string name="f_login_phone">phone</string>
+    <string name="f_login_aprove">I approve</string>
+    <string name="f_login_Bylaws"><u>Bylaws</u></string>
+    <string name="f_login_and">and the</string>
+    <string name="f_login_Terms"><u>Terms of operation</u></string>
+    <string name="main">main</string>
+    <string name="myplaces">my places</string>
+    <string name="notifacations">notifacations</string>
+
     <string name="skip">skip</string>
     <string name="registration">registration</string>
+    <string name="f_homestart_icoming">coming</string>
+    <string name="f_home_start_start_regis">Start registering</string>
+
 
 </resources>

@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.saveus.Activitys.HomePage;
+import com.example.saveus.Activitys.OnPlash;
 import com.example.saveus.Activitys.Welcome;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void moveToWelcome() {
-        Intent goToWelcomActivity = new Intent(getApplicationContext(), Welcome.class);
+        Intent goToWelcomActivity = new Intent(getApplicationContext(), OnPlash.class);
         startActivity(goToWelcomActivity);
     }
 }

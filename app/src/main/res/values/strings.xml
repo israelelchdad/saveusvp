@@ -23,5 +23,19 @@
     <string name="f_login_phone">מספר טלפון</string>
     <string name="skip">דלג</string>
     <string name="registration">הרשמה</string>
+    <string name="f_login_health_text">הבריאות והביטחון שלכם נמצאים בעדיפות עליונה,</string>
+    <string name="f_login_helpyou_text">אנחנו כאן לעזור לכם לעקוב אחר הפעילות ולתעד אותה</string>
+    <string name="f_login_enformaion_text">כל המידע אנונימי לחלוטין אין מה לחשוש</string>
+    <string name="f_login_aprove">אני מאשר את</string>
+    <string name="f_login_Bylaws"><u>התקנון</u></string>
+    <string name="f_login_and">ואת</string>
+    <string name="f_login_Terms"><u>תנאי המבצע</u></string>
+    <string name="main">ראשי</string>
+    <string name="myplaces">המקומות שלי</string>
+    <string name="notifacations">התראות</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="f_homestart_icoming">הגעתי</string>
+    <string name="f_home_start_start_regis">התחל לרשום</string>
 
 </resources>

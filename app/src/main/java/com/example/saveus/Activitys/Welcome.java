@@ -2,17 +2,16 @@ package com.example.saveus.Activitys;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
-import android.net.Uri;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Switch;
 
 import com.example.saveus.Adapters.AdapterViewPagerOnB;
-import com.example.saveus.Fragments.LoginF;
 import com.example.saveus.Fragments.OnBoarding1;
 import com.example.saveus.Fragments.OnBoarding2;
 import com.example.saveus.Fragments.OnBoarding3;
@@ -27,9 +26,12 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
     ViewPager myviewpajer;
     ArrayList<Fragment>myListFragmentsOnBoarding= new ArrayList<>();
     AdapterViewPagerOnB myadapterviewpager;
+    String name = "FIRSTTIME";
+    String KEY=  "firsttime";
 
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,60 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
         myviewpajer = findViewById(R.id.aw_vp);
         myadapterviewpager = new AdapterViewPagerOnB(getSupportFragmentManager(),listFragmentsOnBoarding());
         myviewpajer.setAdapter(myadapterviewpager);
+        setOnTuchOfViewPager();
+
+
+//        myviewpajer.setCurrentItem(myadapterviewpager.getCount()-1);
+
+
+
+
+
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setOnTuchOfViewPager() {
+        myviewpajer.setOnTouchListener(new View.OnTouchListener() {
+            int downX, upX;
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                if(myadapterviewpager.getCount() - 1 == myviewpajer.getCurrentItem()){
+                    if (event.getAction() == MotionEvent.ACTION_UP) {
+                        upX = (int) event.getX();
+
+                        if (downX - upX > -100) {
+                            moveToActivty();
+
+
+
+                        }
+                    }
+                    return true;
+
+                }
+
+                return false;
+            }
+        });
+    }
+
+    private void moveToActivty() {
+
+        SharedPreferences prefs = getSharedPreferences(name, 0);
+        boolean noFirst = prefs.getBoolean(KEY, false);
+        if(!noFirst ){
+            SharedPreferences settings = getSharedPreferences(name, 0);
+            SharedPreferences.Editor edit = settings.edit();
+            edit.putBoolean(KEY, true);
+            edit.commit();
+
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+        }else {
+            startActivity(new Intent(getApplicationContext(), HomePage.class));
+
+        }
+
 
     }
 
@@ -46,7 +102,7 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
         myListFragmentsOnBoarding.add(onBoarding1);
         myListFragmentsOnBoarding.add(onBoarding2);
         myListFragmentsOnBoarding.add(onBoarding3);
-        myListFragmentsOnBoarding.add(new LoginF());
+
         return myListFragmentsOnBoarding;
     }
     @Override
