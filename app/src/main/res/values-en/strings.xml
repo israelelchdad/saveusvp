@@ -38,6 +38,9 @@
     <string name="registration">registration</string>
     <string name="f_homestart_icoming">coming</string>
     <string name="f_home_start_start_regis">Start registering</string>
+    <string name="f_start_stop">stop</string>
+    <string name="f_placemap_onmap">on map</string>
+    <string name="f_placemap_myplaces">my places</string>
 
 
 </resources>

@@ -12,6 +12,7 @@ import com.example.saveus.Fragments.HomeStart;
 import com.example.saveus.Fragments.OnBoarding1;
 import com.example.saveus.Fragments.OnBoarding2;
 import com.example.saveus.Fragments.OnBoarding3;
+import com.example.saveus.Fragments.PlacesAndMap;
 import com.example.saveus.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -47,8 +48,10 @@ public class HomePage extends AppCompatActivity {
             switch (menuItem.getItemId()) {
                 case R.id.am_main:
                    openFragment(homeStart);
+                   break;
                 case R.id.am_myplaces:
-//                    openFragment(onBoarding2);
+                    openFragment(new PlacesAndMap());
+                    break;
                 case R.id.am_notifacation:
 //                    openFragment(onBoarding3);
 

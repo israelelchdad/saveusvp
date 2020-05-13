@@ -1,23 +1,35 @@
 package com.example.saveus.Fragments;
 
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Chronometer;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.saveus.Objects.Place;
 import com.example.saveus.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,17 +38,44 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.BitSet;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Locale;
+
+import static android.content.Context.LOCATION_SERVICE;
+import static android.provider.Contacts.SettingsColumns.KEY;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnClickListener {
 
-    View myViewClicGetLocation;
+    private View myViewClicGetLocation;
     private GoogleMap mMap;
-    SupportMapFragment mapFragment;
-//    private  LocationListener mLocationListener;
+    private SupportMapFragment mapFragment;
+    private View viewOut;
+    private View viewMiddle;
+
+    private View viewInto;
+    private TextView textCom;
+    private TextView textStartRegis;
+    private Chronometer mchronometer;
+    private long allTime;
+    private LocationManager  mLocationManager;
+    private Double latitude   ;
+    private double longitude;
+    private Location final_loc;
+    private Location gps_loc = null;
+    private boolean isStart = true;
+    private Place myPlace;
+
+
+
+
 
 
 
@@ -52,12 +91,19 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view=  inflater.inflate(R.layout.fragment_home_start, container, false);
-        myViewClicGetLocation = view.findViewById(R.id.f_home_start_onclick_location);
+        initViews(view);
+        myPlace = new Place();
+        myViewClicGetLocation = view.findViewById(R.id.f_home_start_com_into);
         myViewClicGetLocation.setOnClickListener(this);
-//        initmLocationListener();
-
-
+        mLocationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+
+
+        initMapFragment();
+        return view;
+    }
+
+    private void initMapFragment() {
         if (mapFragment == null){
             FragmentManager fm = getFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
@@ -66,25 +112,44 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
 
         }
         mapFragment.getMapAsync(this);
-        return view;
+    }
+
+    private void initViews(View view) {
+        viewOut = view.findViewById(R.id.f_home_start_com_out);
+        viewMiddle =view.findViewById(R.id.f_home_start_com_middle);
+        viewInto =view.findViewById(R.id.f_home_start_com_into);
+        textCom = view.findViewById(R.id.f_home_start_text_come);
+        textStartRegis =view.findViewById(R.id.f_home_start_text_start_regis);
+        mchronometer = view.findViewById(R.id.chronometer1);
+
+
     }
 
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        mMap.setMinZoomPreference(1f);
-        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(31.771959,35.217018 );
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//
-//       mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        mMap.setMinZoomPreference(14f);
+
+       LatLng jeruslem = new LatLng(31.771959,35.217018 );
+        mMap.addMarker(new MarkerOptions().position(jeruslem).title("Marker in jeruslem"));
+
+      mMap.moveCamera(CameraUpdateFactory.newLatLng(jeruslem));
 
 
     }
 
+
     @Override
     public void onClick(View v) {
+        if (!isStart){
+            try {
+                chengBeckgroundViews();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
 //        v.setBackgroundResource(R.drawable.circle_butten_gray);
         if ( Build.VERSION.SDK_INT >= 23){
             if (ActivityCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_FINE_LOCATION) !=
@@ -96,11 +161,12 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
             }
         }
 
-       getLocation();
-
+        try {
+            getLocation();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-
-
 
     //get access to location permission
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
@@ -109,7 +175,11 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
         switch (requestCode) {
             case REQUEST_CODE_ASK_PERMISSIONS:
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                   getLocation();
+                    try {
+                        getLocation();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     // Permission Denied
                     Toast.makeText( getContext(),"אם לא תאשר מיקום לא תוכל להשתמש באפליקציה" , Toast.LENGTH_SHORT)
@@ -120,38 +190,95 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
-    private void getLocation() {
+
+
+
+    @SuppressLint("MissingPermission")
+
+    private void getLocation() throws IOException {
+        gps_loc = mLocationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        if (gps_loc != null) {
+            final_loc = gps_loc;
+            latitude = final_loc.getLatitude();
+            longitude = final_loc.getLongitude();
+        }
+
+        chengBeckgroundViews();
+         mMap.setMyLocationEnabled(true);
+         //To add marker
+        LatLng myLocation = new LatLng(latitude, longitude);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
+        mMap.addMarker(new MarkerOptions().position(myLocation).title("Title").snippet("Marker Description"));
 
 
     }
-//    private void initmLocationListener() {
-//        mLocationListener= new LocationListener() {
-//            @Override
-//            public void onLocationChanged(final Location location) {
-//                Double B=location.getAltitude();
-//                Double c=location.getLatitude();
-//                Double e=location.getLongitude();
-//                location.getLatitude();
-//                //your code here
-//            }
-//
-//            @Override
-//            public void onStatusChanged(String provider, int status, Bundle extras) {
-//
-//            }
-//
-//            @Override
-//            public void onProviderEnabled(String provider) {
-//
-//            }
-//
-//            @Override
-//            public void onProviderDisabled(String provider) {
-//
-//            }
-//        };
-//    }
+    private void chengBeckgroundViews() throws IOException {
+        if(isStart){
+            isStart = false;
+            viewOut.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.out_red ));
+            viewMiddle.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.middle_red ));
+            viewInto.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.into_red));
+            setstratMyPlace();
+            textCom.setText(R.string.f_start_stop);
+            textStartRegis.setVisibility(View.GONE);
+            mchronometer.setVisibility(View.VISIBLE);
+            mchronometer.setBase(SystemClock.elapsedRealtime());
+            mchronometer.start();
 
 
+        }else {
+            isStart = true;
+            viewOut.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.circle_butten_com_out ));
+            viewMiddle.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.circle_butten_com_middle));
+            viewInto.setBackgroundDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.circle_butten_com_into));
+            textCom.setText(R.string.f_homestart_icoming);
+            setEndMyPlace();
+            setTime();
+            mchronometer.setVisibility(View.GONE);
+            textStartRegis.setVisibility(View.VISIBLE);
+
+
+        }
+
+
+
+    }
+
+
+    private void setstratMyPlace() throws IOException {
+        myPlace.setDate(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
+        myPlace.setStartTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
+        myPlace.setLatitude(latitude);
+        myPlace.setLongitude(longitude);
+
+        List<Address> addresses;
+        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+
+        addresses = geocoder.getFromLocation(latitude, longitude, 1);
+//        myPlace.setAdressOfUser( addresses.get(0).getAddressLine(0));
+        myPlace.setAdressOfUser(addresses.get(0).getSubThoroughfare());
+        myPlace.setCityOfUser(addresses.get(0).getLocality());
+
+
+
+
+    }
+    private void setEndMyPlace() {
+        myPlace.setEndTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
+    }
+
+
+    private void setTime() {
+        allTime = SystemClock.elapsedRealtime() - mchronometer.getBase();
+        int h   = (int)(allTime /3600000);
+        int m = (int)(allTime - h*3600000)/60000;
+        int s= (int)(allTime - h*3600000- m*60000)/1000 ;
+        String t = (h < 10 ? "0"+h: h)+":"+(m < 10 ? "0"+m: m)+":"+ (s < 10 ? "0"+s: s);
+        myPlace.setAllTime(t);
+        mchronometer.setBase(SystemClock.elapsedRealtime());
+
+
+    }
 }
+
 

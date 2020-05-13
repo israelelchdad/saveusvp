@@ -60,7 +60,6 @@
         android:layout_width="match_parent"
         android:id="@+id/hp_BottomNavigationView"
         android:layout_height="0dp"
-
         app:menu="@menu/am_bottomnavigation"
         android:layout_gravity="bottom"
         app:itemTextColor="#051549"

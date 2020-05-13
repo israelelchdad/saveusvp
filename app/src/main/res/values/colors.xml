@@ -6,5 +6,10 @@
     <color name="colorflogin_welcom">#00b2ab</color>
     <color name="flogin_color_welcome">#ffffff</color>
     <color name="blue_grey">#607d8b</color>
+
+    <color name="com_out">#59ee6777</color>
+    <color name="com_middle">#ff8492</color>
+    <color name="com_into">#e23d51</color>
+
     <color name="emphasis">#31b6e7</color>
 </resources>
