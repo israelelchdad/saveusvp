@@ -14,10 +14,10 @@ import com.example.saveus.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class myPlaces extends Fragment {
+public class MyPlaces extends Fragment {
 
 
-    public myPlaces() {
+    public MyPlaces() {
         // Required empty public constructor
     }
 

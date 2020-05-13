@@ -43,11 +43,12 @@ public class AdapterVpPlaceAndMap extends FragmentStatePagerAdapter {
         String title = null;
         if (position == 0)
         {
-            title = context.getString(R.string.f_placemap_onmap);
+            title = context.getString(R.string.f_placemap_myplaces);
         }
         else if (position == 1)
         {
-            title = context.getString(R.string.f_placemap_myplaces);
+            title = context.getString(R.string.f_placemap_onmap);
+
         }
 
 

@@ -9,9 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 
-import com.example.saveus.Adapters.AdapterViewPagerOnB;
 import com.example.saveus.Adapters.AdapterVpPlaceAndMap;
 import com.example.saveus.R;
 import com.google.android.material.tabs.TabLayout;
@@ -41,31 +39,16 @@ public class PlacesAndMap extends Fragment {
         madapterVpPlaceAndMap = new AdapterVpPlaceAndMap(getChildFragmentManager(),listFragmentsPlaceMp(),view.getContext());
         myviewpajer.setAdapter(madapterVpPlaceAndMap);
         TabLayout tabLayout= view.findViewById(R.id.tab_layout_places_map);
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener(){
-            @Override
-            public void onTabSelected(TabLayout.Tab tab){
-                int position = tab.getPosition();
-
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
 
         tabLayout.setupWithViewPager(myviewpajer);
         return view;
     }
 
     private ArrayList<Fragment> listFragmentsPlaceMp() {
-        myListFragmentsPlaceAndMap.add(new HomeStart());
-        myListFragmentsPlaceAndMap.add(new myPlaces());
+
+        myListFragmentsPlaceAndMap.add(new MyPlaces());
+        myListFragmentsPlaceAndMap.add(new Map());
+
 
         return myListFragmentsPlaceAndMap;
     }
