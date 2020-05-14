@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="0dp"
+        android:id="@+id/linear_tag"
         android:layout_weight="60">
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,10 +60,12 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:id="@+id/hp_BottomNavigationView"
+        android:background="#ffffff"
         android:layout_height="0dp"
         app:menu="@menu/am_bottomnavigation"
         android:layout_gravity="bottom"
         app:itemTextColor="#051549"
+        app:itemTextAppearanceActive="@style/bootomnavigationText"
         android:layout_weight="60"/>
 
 </LinearLayout>

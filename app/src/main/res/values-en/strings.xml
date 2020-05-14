@@ -41,6 +41,7 @@
     <string name="f_start_stop">stop</string>
     <string name="f_placemap_onmap">on map</string>
     <string name="f_placemap_myplaces">my places</string>
+    <string name="add_place">add \n place</string>
 
 
 </resources>

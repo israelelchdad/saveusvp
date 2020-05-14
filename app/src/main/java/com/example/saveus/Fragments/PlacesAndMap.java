@@ -1,6 +1,8 @@
 package com.example.saveus.Fragments;
 
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +11,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.example.saveus.Adapters.AdapterVpPlaceAndMap;
 import com.example.saveus.R;
@@ -19,13 +22,16 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlacesAndMap extends Fragment {
+public class PlacesAndMap extends Fragment implements View.OnClickListener {
    private ViewPager myviewpajer;
    AdapterVpPlaceAndMap madapterVpPlaceAndMap;
     ArrayList<Fragment>myListFragmentsPlaceAndMap= new ArrayList<>();
+    private LinearLayout mlinearLayout;
+    private MoveToAddPlacenListener moveToAddPlacenListener;
 
 
-    public PlacesAndMap() {
+    public PlacesAndMap(Activity activity) {
+        moveToAddPlacenListener = (MoveToAddPlacenListener) activity;
         // Required empty public constructor
     }
 
@@ -39,6 +45,9 @@ public class PlacesAndMap extends Fragment {
         madapterVpPlaceAndMap = new AdapterVpPlaceAndMap(getChildFragmentManager(),listFragmentsPlaceMp(),view.getContext());
         myviewpajer.setAdapter(madapterVpPlaceAndMap);
         TabLayout tabLayout= view.findViewById(R.id.tab_layout_places_map);
+        mlinearLayout = view.findViewById(R.id.f_map_add);
+        mlinearLayout.setOnClickListener(this);
+
 
         tabLayout.setupWithViewPager(myviewpajer);
         return view;
@@ -51,6 +60,27 @@ public class PlacesAndMap extends Fragment {
 
 
         return myListFragmentsPlaceAndMap;
+    }
+
+    @Override
+    public void onClick(View v) {
+        moveToAddPlacenListener.moveToAddPlace();
+
+    }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof PlacesAndMap.MoveToAddPlacenListener) {
+            moveToAddPlacenListener = (MoveToAddPlacenListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    public interface MoveToAddPlacenListener {
+
+        void moveToAddPlace();
     }
 
 }

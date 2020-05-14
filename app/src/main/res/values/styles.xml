@@ -20,6 +20,9 @@
     <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">22sp</item>
     </style>
+    <style name="bootomnavigationText" parent="TextAppearance.Design.Tab">
+        <item name="android:textStyle">bold</item>
+    </style>
 
 
 
