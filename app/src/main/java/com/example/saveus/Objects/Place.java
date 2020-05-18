@@ -20,6 +20,8 @@ public class Place {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+    public Place() {
+    }
 
     public Double getLatitude() {
         return latitude;
@@ -37,8 +39,7 @@ public class Place {
         this.longitude = longitude;
     }
 
-    public Place() {
-    }
+
 
     public String getCityOfUser() {
         return cityOfUser;
