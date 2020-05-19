@@ -10,7 +10,9 @@
 
 
     <LinearLayout
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:orientation="vertical">
@@ -29,6 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="שמירה"
+                android:id="@+id/f_add_place_save"
                 android:textColor="#00b2ab"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -178,7 +181,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/f_add_starttime"
+                            android:id="@+id/f_add_time_start"
                             android:textStyle="bold"
                             android:text="00:00:00"
                             android:textColor="@color/text_color_addplace"/>
@@ -186,6 +189,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/f_add_starttime"
                             android:textStyle="bold"
                             android:textSize="14sp"
                             android:textColor="@color/hintTextColor"
@@ -222,6 +226,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
+                            android:id="@+id/f_add_time_end"
                             android:textSize="14sp"
                             android:textColor="@color/hintTextColor"
                             android:text="סיום"/>
@@ -267,7 +272,7 @@
                     android:layout_height="wrap_content"
 
                     android:text="00:00:00"
-                    android:id="@+id/f_all_starttime"
+                    android:id="@+id/f_all_time"
                     android:textStyle="bold"
                     android:textColor="@color/text_color_addplace"/>
 

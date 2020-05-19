@@ -246,7 +246,9 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
 
 
     private void setstratMyPlace() throws IOException {
-        myPlace.setDate(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()));
+        myPlace.setYear(Calendar.getInstance().get(Calendar.YEAR));
+        myPlace.setMounth(Calendar.getInstance().get(Calendar.MONTH)+1);
+        myPlace.setDay(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
         myPlace.setStartTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
         myPlace.setLatitude(latitude);
         myPlace.setLongitude(longitude);

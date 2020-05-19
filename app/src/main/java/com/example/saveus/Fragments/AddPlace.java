@@ -1,6 +1,7 @@
 package com.example.saveus.Fragments;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -10,6 +11,8 @@ import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +23,8 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.example.saveus.Objects.Place;
 import com.example.saveus.R;
@@ -33,11 +38,25 @@ import java.util.List;
 
 public class AddPlace extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
     private Place myPlace;
-    ImageView addata;
-    EditText adress;
-    CalendarView calendarView;
+    private ImageView addata;
+    private EditText adress;
+    private TextView addDate;
+    private TextView startTime;
+    private TextView timeOfStart;
+    private TextView timeEnd;
+    private TextView endOfTime;
+    private TextView allTime;
+    private int startHour;
+    private int startMinute;
+    private int endHour;
+    private int endMinute;
+    private TextView save;
+    private String adressOfUser;
 
-    private OnFragmentInteractionListener mListener;
+
+
+
+    private updatePlace mListener;
 
     public AddPlace() {
 
@@ -72,26 +91,35 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
     private void initViews(View view) {
          addata = view.findViewById(R.id.add_plaice_date_IV);
          addata.setOnClickListener(this);
+         addDate = view.findViewById(R.id.f_add_date);
          adress = view.findViewById(R.id.f_add_adress);
-         initEditorActionListener();
+         adress.setOnClickListener(this);
+
+
+//         initEditorActionListener();
+         startTime = view.findViewById(R.id.f_add_starttime);
+         startTime.setOnClickListener(this);
+         timeOfStart = view.findViewById(R.id.f_add_time_start);
+         timeEnd = view.findViewById(R.id.f_add_time_end);
+         timeEnd.setOnClickListener(this);
+         endOfTime = view.findViewById(R.id.f_add_endttime);
+         allTime =  view.findViewById(R.id.f_all_time);
+         save =  view.findViewById(R.id.f_add_place_save);
+         save.setOnClickListener(this);
+
 
 
 
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
+
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof updatePlace) {
+            mListener = (updatePlace) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -111,7 +139,10 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         String currentDate = DateFormat.getDateInstance().format(c.getTime());
-        myPlace.setDate(currentDate);
+        addDate.setText(currentDate);
+        myPlace.setYear(year);
+        myPlace.setMounth(month+1);
+        myPlace.setDay(dayOfMonth);
 
 
 
@@ -124,13 +155,90 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
                 initDialogFragment();
                 break;
             case R.id.f_add_adress:
-
+//            initAdress();
                 break;
+            case R.id.f_add_starttime:
+                initStartTime(timeOfStart);
+                break;
+            case R.id.f_add_time_end:
+                initEndTime(endOfTime);
+                break;
+            case R.id.f_add_place_save:
+                initAdress();
+                if (mListener != null) {
+                    mListener.setMyPlace(myPlace);
+                }
+                break;
+        }
+    }
 
+    private void initStartTime(final TextView textView) {
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                textView.setText( setTime(selectedHour) + ":" + setTime(selectedMinute));
+                myPlace.setStartTime( setTime(selectedHour) + ":" + setTime(selectedMinute));
+                startHour = selectedHour;
+                startMinute =selectedMinute;
+            }
+        }, hour, minute, true);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
+
+
+    private void initEndTime(final TextView textView) {
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                endHour = selectedHour;
+                endMinute =selectedMinute;
+                if(endHour -startHour<0){
+                    Toast.makeText(getActivity(), "chose time another!",
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
+                textView.setText( setTime(selectedHour) + ":" +setTime( selectedMinute));
+                myPlace.setEndTime( setTime(selectedHour) + ":" +setTime( selectedMinute));
+                alltime(startHour,startMinute,endHour,endMinute);
+            }
+        }, hour, minute, true);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
+
+
+    private void alltime(int startHour, int startMinute, int endHour, int endMinute) {
+        int start= startHour*60+startMinute;
+        int end= endHour*60+endMinute;
+        int allMinute = end-start;
+        int myAllHour =allMinute/60;
+        int myallMinute = allMinute%60;
+        String myAllTime = setTime(myAllHour) +":"+setTime(myallMinute)+":00";
+        allTime.setText(myAllTime);
+        myPlace.setAllTime(myAllTime);
+        int a=5;
 
     }
-    }
+    public static String setTime(int time) {
+        String myTime;
+        if(time<10){
+            myTime = "0"+time;
 
+        }else {
+            myTime =String.valueOf(time);
+        }
+        return myTime;
+
+    }
 
 
     private void initDialogFragment() {
@@ -140,34 +248,12 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
 
     }
 
-    private void initEditorActionListener() {
-        adress.setOnEditorActionListener(
-                new EditText.OnEditorActionListener() {
 
 
-                    @Override
-                    public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                        if (actionId == EditorInfo.IME_ACTION_SEARCH ||
-                                actionId == EditorInfo.IME_ACTION_DONE ||
-                                event != null &&
-                                        event.getAction() == KeyEvent.ACTION_DOWN &&
-                                        event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-                            if (event == null || !event.isShiftPressed()) {
-                                initAdress();
-                                // the user is done typing.
-
-                                return true; // consume.
-                            }
-                        }
-                        return false; // pass on to other listeners.
-                    }
-                }
-        );
-    }
     private void initAdress() {
-        myPlace.setAdressOfUser(adress.getText().toString());
-        String myAdress =adress.getText().toString();
-        LatLng l = getLocationFromAddress(myAdress);
+        adressOfUser = adress.getText().toString();
+        myPlace.setAdressOfUser(adressOfUser);
+        LatLng l = getLocationFromAddress(adressOfUser);
         initLatlngOfPlace(l);
     }
 
@@ -203,8 +289,8 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
     }
 
 
-    public interface OnFragmentInteractionListener {
+    public interface updatePlace {
 
-        void onFragmentInteraction(Uri uri);
+        void setMyPlace(Place myPlace);
     }
 }

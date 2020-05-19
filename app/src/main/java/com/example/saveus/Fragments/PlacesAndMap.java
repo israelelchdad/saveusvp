@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
 import com.example.saveus.Adapters.AdapterVpPlaceAndMap;
+import com.example.saveus.Objects.Place;
 import com.example.saveus.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,17 +30,40 @@ public class PlacesAndMap extends Fragment implements View.OnClickListener {
     ArrayList<Fragment>myListFragmentsPlaceAndMap= new ArrayList<>();
     private LinearLayout mlinearLayout;
     private MoveToAddPlacenListener moveToAddPlacenListener;
+    ArrayList<Place> places;
 
 
-    public PlacesAndMap(Activity activity) {
-        moveToAddPlacenListener = (MoveToAddPlacenListener) activity;
+
+
+    public static PlacesAndMap newInstance() {
+        PlacesAndMap fragment = new PlacesAndMap();
+        Bundle args = new Bundle();
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+
+    public PlacesAndMap() {
+
         // Required empty public constructor
+    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+//        if(getArguments()!=null){
+//            places =getArguments().getParcelableArray("key");
+//
+//        }
+
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_places_and_map, container, false);
         myviewpajer = view.findViewById(R.id.place_map_vp);

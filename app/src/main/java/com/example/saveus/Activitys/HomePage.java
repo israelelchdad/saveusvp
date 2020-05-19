@@ -17,13 +17,17 @@ import com.example.saveus.Fragments.OnBoarding1;
 import com.example.saveus.Fragments.OnBoarding2;
 import com.example.saveus.Fragments.OnBoarding3;
 import com.example.saveus.Fragments.PlacesAndMap;
+import com.example.saveus.Objects.Place;
 import com.example.saveus.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.OnFragmentInteractionListener {
+import java.util.ArrayList;
+
+public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace {
     BottomNavigationView mybottomNavigation;
     HomeStart homeStart ;
     LinearLayout linearLayout;
+    ArrayList<Place> myPlaces;
 
 
 
@@ -34,6 +38,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
         setContentView(R.layout.activity_home_page);
         mybottomNavigation = findViewById(R.id.hp_BottomNavigationView);
         linearLayout = findViewById(R.id.linear_tag);
+        myPlaces = new ArrayList();
         mybottomNavigation.setItemIconTintList(null);
         homeStart = new HomeStart();
         openFragment(homeStart);
@@ -58,7 +63,12 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
                    break;
                 case R.id.am_myplaces:
                     linearLayout.setVisibility(View.VISIBLE);
-                    openFragment(new PlacesAndMap(getParent()));
+                    PlacesAndMap fragment = PlacesAndMap.newInstance();
+                    Bundle args = new Bundle();
+                    args.putParcelableArrayList("key", myPlaces);
+                    fragment.setArguments(args);
+                    openFragment(fragment);
+
                     break;
                 case R.id.am_notifacation:
 //                    openFragment(onBoarding3);
@@ -83,8 +93,11 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
 
     }
 
+
     @Override
-    public void onFragmentInteraction(Uri uri) {
+    public void setMyPlace(Place myPlace) {
+        myPlaces.add(myPlace);
+        int a= 7;
 
     }
 }
