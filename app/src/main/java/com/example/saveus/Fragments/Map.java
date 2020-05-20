@@ -37,6 +37,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -50,6 +51,29 @@ public class Map extends Fragment implements OnMapReadyCallback,View.OnClickList
 
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
+    private static String KeyMPlace ="MYPLACE";
+    private ArrayList<Place> places =new ArrayList<>();
+
+
+    public static Map newInstance(ArrayList<Place> myPlaces) {
+        Map fragment = new Map();
+        Bundle args = new Bundle();
+        args.putParcelableArrayList(KeyMPlace, myPlaces);
+        fragment.setArguments(args);
+        return fragment;
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            places = getArguments().getParcelableArrayList(KeyMPlace);
+            int a =6;
+            int b =6;
+
+        }
+    }
 
 
 
@@ -94,14 +118,26 @@ public class Map extends Fragment implements OnMapReadyCallback,View.OnClickList
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMinZoomPreference(14f);
-        LatLng jeruslem = new LatLng(31.7857396,35.2151338 );
+        setMarkersOfUsers(mMap);
+        LatLng jeruslem = new LatLng(31.78573509999,35.212945 );
         mMap.addMarker(new MarkerOptions().position(jeruslem).title("Marker in jeruslem"));
 
         mMap.moveCamera(CameraUpdateFactory.newLatLng(jeruslem));
-//        LatLng p = new LatLng(HomeStart.myPlace.getLatitude(),HomeStart.myPlace.getLongitude() );
-//        mMap.addMarker(new MarkerOptions().position(p).title("Marker in p"));
 
 
+
+    }
+
+    private void setMarkersOfUsers(GoogleMap googleMap) {
+        if(places.size()>0){
+            for (int i = 0; i <places.size() ; i++) {
+                LatLng location = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
+                googleMap.addMarker(new MarkerOptions().position(location).title("Marker in jeruslem"));
+
+
+            }
+
+        }
     }
 
 

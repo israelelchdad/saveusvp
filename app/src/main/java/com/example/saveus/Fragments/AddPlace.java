@@ -278,8 +278,8 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
             location.getLatitude();
             location.getLongitude();
 
-            p1 = new LatLng((double) (location.getLatitude() * 1E6),
-                    (double) (location.getLongitude() * 1E6));
+            p1 = new LatLng((double) (location.getLatitude() ),
+                    (double) (location.getLongitude()));
 
 
         } catch (IOException e) {

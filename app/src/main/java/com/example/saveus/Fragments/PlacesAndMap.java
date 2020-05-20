@@ -3,12 +3,14 @@ package com.example.saveus.Fragments;
 
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,38 +26,44 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PlacesAndMap extends Fragment implements View.OnClickListener {
-   private ViewPager myviewpajer;
+public class PlacesAndMap extends Fragment implements MyPlaces.OnFragmentInteractionListener, View.OnClickListener{
+    private static String Keyplaces= "places";
+    private ViewPager myviewpajer;
    AdapterVpPlaceAndMap madapterVpPlaceAndMap;
     ArrayList<Fragment>myListFragmentsPlaceAndMap= new ArrayList<>();
     private LinearLayout mlinearLayout;
     private MoveToAddPlacenListener moveToAddPlacenListener;
-    ArrayList<Place> places;
+    ArrayList<Place> places = new ArrayList<>();
 
 
 
-
-    public static PlacesAndMap newInstance() {
+    public static PlacesAndMap newInstance(ArrayList<Place> myPlaces) {
         PlacesAndMap fragment = new PlacesAndMap();
         Bundle args = new Bundle();
+        args.putParcelableArrayList(Keyplaces, myPlaces);
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+
+            places = getArguments().getParcelableArrayList(Keyplaces);
+            int a = 6;
+            int b =6;
+
+        }
+    }
+
 
 
     public PlacesAndMap() {
 
         // Required empty public constructor
     }
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        if(getArguments()!=null){
-//            places =getArguments().getParcelableArray("key");
-//
-//        }
 
-    }
 
 
     @Override
@@ -80,8 +88,8 @@ public class PlacesAndMap extends Fragment implements View.OnClickListener {
 
     private ArrayList<Fragment> listFragmentsPlaceMp() {
 
-        myListFragmentsPlaceAndMap.add(new MyPlaces());
-        myListFragmentsPlaceAndMap.add(new Map());
+        myListFragmentsPlaceAndMap.add(MyPlaces.newInstance(places));
+        myListFragmentsPlaceAndMap.add(Map.newInstance(places));
 
 
         return myListFragmentsPlaceAndMap;
@@ -101,6 +109,11 @@ public class PlacesAndMap extends Fragment implements View.OnClickListener {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
     public interface MoveToAddPlacenListener {

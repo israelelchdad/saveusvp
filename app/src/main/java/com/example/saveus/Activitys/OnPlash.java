@@ -21,8 +21,8 @@ public class OnPlash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-               Intent goToWelcomActivity = new Intent(getBaseContext(), Welcome.class);
-//                Intent goToWelcomActivity = new Intent(getBaseContext(), HomePage.class);
+              Intent goToWelcomActivity = new Intent(getBaseContext(), Welcome.class);
+//               Intent goToWelcomActivity = new Intent(getBaseContext(), HomePage.class);
                 startActivity(goToWelcomActivity);;
                 finish();
             }

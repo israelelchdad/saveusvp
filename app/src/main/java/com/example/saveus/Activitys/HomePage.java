@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 
 import com.example.saveus.Fragments.AddPlace;
 import com.example.saveus.Fragments.HomeStart;
+import com.example.saveus.Fragments.MyPlaces;
 import com.example.saveus.Fragments.OnBoarding1;
 import com.example.saveus.Fragments.OnBoarding2;
 import com.example.saveus.Fragments.OnBoarding3;
@@ -23,7 +24,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace {
+public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener {
     BottomNavigationView mybottomNavigation;
     HomeStart homeStart ;
     LinearLayout linearLayout;
@@ -63,10 +64,8 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
                    break;
                 case R.id.am_myplaces:
                     linearLayout.setVisibility(View.VISIBLE);
-                    PlacesAndMap fragment = PlacesAndMap.newInstance();
-                    Bundle args = new Bundle();
-                    args.putParcelableArrayList("key", myPlaces);
-                    fragment.setArguments(args);
+                    PlacesAndMap fragment = PlacesAndMap.newInstance(myPlaces);
+
                     openFragment(fragment);
 
                     break;
@@ -98,6 +97,11 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     public void setMyPlace(Place myPlace) {
         myPlaces.add(myPlace);
         int a= 7;
+
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 }
