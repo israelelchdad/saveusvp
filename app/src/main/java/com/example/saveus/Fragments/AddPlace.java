@@ -17,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
@@ -73,6 +74,7 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
 
         }
@@ -155,7 +157,7 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
                 initDialogFragment();
                 break;
             case R.id.f_add_adress:
-//            initAdress();
+//           initAdress();
                 break;
             case R.id.f_add_starttime:
                 initStartTime(timeOfStart);
@@ -164,9 +166,10 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
                 initEndTime(endOfTime);
                 break;
             case R.id.f_add_place_save:
-                initAdress();
+               initAdress();
                 if (mListener != null) {
                     mListener.setMyPlace(myPlace);
+                    int b=5;
                 }
                 break;
         }
