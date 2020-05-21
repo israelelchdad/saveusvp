@@ -61,9 +61,14 @@
                 android:textColor="#333333"
                 android:text="00:03:13"/>
 
-
         </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="#e0e0e0"/>
     </RelativeLayout>
+
 
 
 </LinearLayout>

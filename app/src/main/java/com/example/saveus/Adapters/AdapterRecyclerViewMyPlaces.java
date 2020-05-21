@@ -70,7 +70,7 @@ public class AdapterRecyclerViewMyPlaces extends  RecyclerView.Adapter<AdapterRe
         public void setHolder( Place place) {
             myPlace =place;
             adress.setText(place.getAdressOfUser());
-            startTimeEndTime.setText(place.getStartTime()+"-"+place.getEndTime());
+            startTimeEndTime.setText(place.getStartTime()+" - "+place.getEndTime());
             allTime.setText(place.getAllTime());
 
 
