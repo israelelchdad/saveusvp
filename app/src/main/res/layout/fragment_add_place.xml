@@ -121,7 +121,6 @@
                 android:layout_height="match_parent"/>
 
             <TextView
-
                 android:layout_width="wrap_content"
                 android:id="@+id/f_add_date"
                 android:layout_height="wrap_content"
@@ -315,6 +314,7 @@
             <ImageView
                 android:layout_width="26dp"
                 android:layout_height="26dp"
+                android:id="@+id/f_add_place_clear"
                 android:src="@drawable/delete_1"/>
 
             <View

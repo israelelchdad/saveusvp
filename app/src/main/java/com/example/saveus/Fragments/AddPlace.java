@@ -11,6 +11,7 @@ import android.os.Bundle;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
@@ -47,11 +48,13 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
     private TextView timeEnd;
     private TextView endOfTime;
     private TextView allTime;
+    private TextView save;
+    private ImageView clearPlace;
     private int startHour;
     private int startMinute;
     private int endHour;
     private int endMinute;
-    private TextView save;
+
     private String adressOfUser;
 
 
@@ -96,9 +99,7 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
          addDate = view.findViewById(R.id.f_add_date);
          adress = view.findViewById(R.id.f_add_adress);
          adress.setOnClickListener(this);
-
-
-//         initEditorActionListener();
+         //         initEditorActionListener();
          startTime = view.findViewById(R.id.f_add_starttime);
          startTime.setOnClickListener(this);
          timeOfStart = view.findViewById(R.id.f_add_time_start);
@@ -108,6 +109,8 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
          allTime =  view.findViewById(R.id.f_all_time);
          save =  view.findViewById(R.id.f_add_place_save);
          save.setOnClickListener(this);
+         clearPlace = view.findViewById(R.id.f_add_place_clear);
+         clearPlace.setOnClickListener(this);
 
 
 
@@ -172,8 +175,29 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
                     int b=5;
                 }
                 break;
+            case R.id.f_add_place_clear:
+                clearMyPlace();
+                break;
+
         }
     }
+
+
+    private void initDialogFragment() {
+        DialogFragment datePicker = new DataPickerFragment();
+        datePicker.setTargetFragment(AddPlace.this, 0);
+        datePicker.show(getFragmentManager(), "date picker");
+
+    }
+
+    private void initAdress() {
+        adressOfUser = adress.getText().toString();
+        myPlace.setAdressOfUser(adressOfUser);
+        LatLng l = getLocationFromAddress(adressOfUser);
+        initLatlngOfPlace(l);
+    }
+
+
 
     private void initStartTime(final TextView textView) {
         Calendar mcurrentTime = Calendar.getInstance();
@@ -231,6 +255,17 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
         int a=5;
 
     }
+
+    private void clearMyPlace() {
+        myPlace = null;
+        adress.getText().clear();
+        addDate.setText("הוספת תאריך");
+        timeOfStart.setText("00:00:00");
+        endOfTime.setText("00:00:00");
+        allTime.setText("00:00:00");
+
+    }
+
     public static String setTime(int time) {
         String myTime;
         if(time<10){
@@ -244,21 +279,11 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
     }
 
 
-    private void initDialogFragment() {
-        DialogFragment datePicker = new DataPickerFragment();
-        datePicker.setTargetFragment(AddPlace.this, 0);
-        datePicker.show(getFragmentManager(), "date picker");
-
-    }
 
 
 
-    private void initAdress() {
-        adressOfUser = adress.getText().toString();
-        myPlace.setAdressOfUser(adressOfUser);
-        LatLng l = getLocationFromAddress(adressOfUser);
-        initLatlngOfPlace(l);
-    }
+
+
 
     private void initLatlngOfPlace( LatLng latLng) {
         myPlace.setLatitude(latLng.latitude);
