@@ -46,6 +46,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Calendar;
 import java.util.Date;
@@ -79,6 +80,29 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
     private boolean isStart = true;
     private Place myPlace;
     private AddPlace.updatePlace mListener;
+    private static String KeyMPla ="MYPLA";
+    private ArrayList<Place> places =new ArrayList<>();
+
+
+    public static HomeStart newInstance(ArrayList<Place> myPlaces) {
+        HomeStart fragment = new HomeStart();
+        Bundle args = new Bundle();
+        args.putParcelableArrayList(KeyMPla, myPlaces);
+        fragment.setArguments(args);
+        return fragment;
+
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            places = getArguments().getParcelableArrayList(KeyMPla);
+            int a =6;
+            int b =6;
+
+        }
+    }
 
 
 
@@ -99,7 +123,7 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
         // Inflate the layout for this fragment
         View view=  inflater.inflate(R.layout.fragment_home_start, container, false);
         initViews(view);
-        myPlace = new Place();
+
         myViewClicGetLocation = view.findViewById(R.id.f_home_start_com_into);
         myViewClicGetLocation.setOnClickListener(this);
         mLocationManager = (LocationManager) getContext().getSystemService(LOCATION_SERVICE);
@@ -153,13 +177,35 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMinZoomPreference(14f);
-
-       LatLng jeruslem = new LatLng(31.771959,35.217018 );
-        mMap.addMarker(new MarkerOptions().position(jeruslem).title("Marker in jeruslem"));
-
-      mMap.moveCamera(CameraUpdateFactory.newLatLng(jeruslem));
+        setMarkersOfUsers(mMap);
 
 
+
+    }
+
+    private void setMarkersOfUsers(GoogleMap mMap) {
+        int sizePlaces = places.size();
+        if(sizePlaces >0){
+            for (int i = 0; i <places.size() ; i++) {
+                LatLng location = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
+                mMap.addMarker(new MarkerOptions().position(location).title("Marker in "+ location));
+                if(i+1==sizePlaces){
+                    LatLng mlatLng = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
+
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(mlatLng));
+
+                }
+
+            }
+
+        }
+
+        else {
+            LatLng jeruslem = new LatLng(31.78573509999,35.217018 );
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(jeruslem));
+
+        }
     }
 
 
@@ -224,6 +270,7 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
             final_loc = gps_loc;
             latitude = final_loc.getLatitude();
             longitude = final_loc.getLongitude();
+
         }
         else {
             latitude = 0.0;
@@ -234,12 +281,14 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
         chengBeckgroundViews();
          mMap.setMyLocationEnabled(true);
          //To add marker
+        addMarkerAndMoveLocation();
+
+    }
+
+    private void addMarkerAndMoveLocation() {
         LatLng myLocation = new LatLng(latitude, longitude);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(myLocation));
         mMap.addMarker(new MarkerOptions().position(myLocation).title("Title").snippet("Marker Description"));
-
-
-
     }
 
     private void chengBeckgroundViews() throws IOException {
@@ -279,6 +328,7 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
 
 
     private void setstratMyPlace() throws IOException {
+        myPlace = new Place();
         myPlace.setYear(Calendar.getInstance().get(Calendar.YEAR));
         myPlace.setMounth(Calendar.getInstance().get(Calendar.MONTH)+1);
         myPlace.setDay(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
@@ -288,11 +338,14 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
 
         List<Address> addresses;
         Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
-
-        addresses = geocoder.getFromLocation(latitude, longitude, 1);
-        myPlace.setAdressOfUser( addresses.get(0).getAddressLine(0));
-        myPlace.setAdressOfUser(addresses.get(0).getSubThoroughfare());
-        myPlace.setCityOfUser(addresses.get(0).getLocality());
+        try {
+            addresses = geocoder.getFromLocation(latitude, longitude, 1);
+            myPlace.setAdressOfUser( addresses.get(0).getAddressLine(0));
+            myPlace.setAdressOfUser(addresses.get(0).getSubThoroughfare());
+            myPlace.setCityOfUser(addresses.get(0).getLocality());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -315,6 +368,7 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
 
     }
     private void addMyplaceToMyPlaces() {
+        places.add(myPlace);
         mListener.setMyPlace(myPlace);
         int a= 5;
     }

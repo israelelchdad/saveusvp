@@ -119,23 +119,30 @@ public class Map extends Fragment implements OnMapReadyCallback,View.OnClickList
         mMap = googleMap;
         mMap.setMinZoomPreference(14f);
         setMarkersOfUsers(mMap);
-        LatLng jeruslem = new LatLng(31.78573509999,35.212945 );
-        mMap.addMarker(new MarkerOptions().position(jeruslem).title("Marker in jeruslem"));
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(jeruslem));
 
 
 
     }
 
     private void setMarkersOfUsers(GoogleMap googleMap) {
-        if(places.size()>0){
-            for (int i = 0; i <places.size() ; i++) {
+        int lengthPlaces = places.size();
+        if(lengthPlaces>0){
+            for (int i = 0; i < places.size() ; i++) {
                 LatLng location = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
                 googleMap.addMarker(new MarkerOptions().position(location).title("Marker in jeruslem"));
+                if(i+1==lengthPlaces){
+                    mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
 
+                }
 
             }
+
+            }else {
+            LatLng jeruslem = new LatLng(31.78573509999,35.212945 );
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(jeruslem));
+
 
         }
     }

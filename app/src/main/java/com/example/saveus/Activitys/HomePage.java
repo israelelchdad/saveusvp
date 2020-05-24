@@ -18,13 +18,14 @@ import com.example.saveus.Fragments.OnBoarding1;
 import com.example.saveus.Fragments.OnBoarding2;
 import com.example.saveus.Fragments.OnBoarding3;
 import com.example.saveus.Fragments.PlacesAndMap;
+import com.example.saveus.Fragments.changePlace;
 import com.example.saveus.Objects.Place;
 import com.example.saveus.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener {
+public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener ,changePlace.OnFragmentInteractionListener{
     BottomNavigationView mybottomNavigation;
     HomeStart homeStart ;
     LinearLayout linearLayout;
@@ -42,7 +43,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
         myPlaces = new ArrayList();
         mybottomNavigation.setItemIconTintList(null);
         homeStart = new HomeStart();
-        openFragment(homeStart);
+        openFragment(HomeStart.newInstance(myPlaces));
 
 
 
@@ -60,7 +61,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
             switch (menuItem.getItemId()) {
                 case R.id.am_main:
                     linearLayout.setVisibility(View.VISIBLE);
-                   openFragment(homeStart);
+                   openFragment(HomeStart.newInstance(myPlaces));
                    break;
                 case R.id.am_myplaces:
                     linearLayout.setVisibility(View.VISIBLE);
@@ -102,6 +103,12 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onItemClickPlace(ArrayList<Place>myPlaces, int position) {
+        openFragment(changePlace.newInstance(myPlaces,position));
 
     }
 }

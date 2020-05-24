@@ -23,7 +23,7 @@ public class AdapterRecyclerViewMyPlaces extends  RecyclerView.Adapter<AdapterRe
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public AdapterRecyclerViewMyPlaces(Context context, ArrayList<Place> data) {
+    public AdapterRecyclerViewMyPlaces(Context context, ArrayList<Place> data,ItemClickListener mClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.myPlaces = data;
     }
@@ -67,7 +67,7 @@ public class AdapterRecyclerViewMyPlaces extends  RecyclerView.Adapter<AdapterRe
         }
 
 
-        public void setHolder( Place place) {
+        public void setHolder(Place place) {
             myPlace =place;
             adress.setText(place.getAdressOfUser());
             startTimeEndTime.setText(place.getStartTime()+" - "+place.getEndTime());
@@ -81,7 +81,7 @@ public class AdapterRecyclerViewMyPlaces extends  RecyclerView.Adapter<AdapterRe
         @Override
         public void onClick(View view) {
             if (mClickListener != null) {
-                mClickListener.onItemClick(view, getAdapterPosition());
+                mClickListener.onItemClick( getAdapterPosition());
             }
 
         }
@@ -96,7 +96,7 @@ public class AdapterRecyclerViewMyPlaces extends  RecyclerView.Adapter<AdapterRe
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick(View view, int position);
+        void onItemClick( int position);
     }
 }
 
