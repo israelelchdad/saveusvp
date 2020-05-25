@@ -131,7 +131,7 @@ public class Map extends Fragment implements OnMapReadyCallback,View.OnClickList
             for (int i = 0; i < places.size() ; i++) {
                 LatLng location = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
                 googleMap.addMarker(new MarkerOptions().position(location).title("Marker in jeruslem"));
-                if(i+1==lengthPlaces){
+                if(i==0){
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
 
                 }

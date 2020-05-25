@@ -3,12 +3,15 @@ package com.example.saveus.Activitys;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.saveus.R;
 
 public class OnPlash extends AppCompatActivity {
+    String name = "FIRSTTIME";
+    String KEY=  "firsttime";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +24,28 @@ public class OnPlash extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-              Intent goToWelcomActivity = new Intent(getBaseContext(), Welcome.class);
-//               Intent goToWelcomActivity = new Intent(getBaseContext(), HomePage.class);
-                startActivity(goToWelcomActivity);;
+                moveToActivty();
+
                 finish();
             }
         }, 3000);
+    }
+    private void moveToActivty() {
+
+        SharedPreferences prefs = getSharedPreferences(name, 0);
+        boolean noFirst = prefs.getBoolean(KEY, false);
+        if(!noFirst ){
+            SharedPreferences settings = getSharedPreferences(name, 0);
+            SharedPreferences.Editor edit = settings.edit();
+            edit.putBoolean(KEY, true);
+            edit.commit();
+
+            startActivity(new Intent(getApplicationContext(), Welcome.class));
+        }else {
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+
+        }
+
+
     }
 }

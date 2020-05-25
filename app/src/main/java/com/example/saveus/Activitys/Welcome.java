@@ -26,8 +26,7 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
     ViewPager myviewpajer;
     ArrayList<Fragment>myListFragmentsOnBoarding= new ArrayList<>();
     AdapterViewPagerOnB myadapterviewpager;
-    String name = "FIRSTTIME";
-    String KEY=  "firsttime";
+
 
 
 
@@ -79,23 +78,9 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
     }
 
     private void moveToActivty() {
-
-        SharedPreferences prefs = getSharedPreferences(name, 0);
-        boolean noFirst = prefs.getBoolean(KEY, false);
-        if(!noFirst ){
-            SharedPreferences settings = getSharedPreferences(name, 0);
-            SharedPreferences.Editor edit = settings.edit();
-            edit.putBoolean(KEY, true);
-            edit.commit();
-
-            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-        }else {
-            startActivity(new Intent(getApplicationContext(), HomePage.class));
-
-        }
-
-
+        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
+
 
     private ArrayList<Fragment> listFragmentsOnBoarding() {
 

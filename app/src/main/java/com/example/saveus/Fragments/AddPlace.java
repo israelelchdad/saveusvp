@@ -137,21 +137,6 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
         mListener = null;
     }
 
-    @Override
-    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.YEAR, year);
-        c.set(Calendar.MONTH, month);
-        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDate = DateFormat.getDateInstance().format(c.getTime());
-        addDate.setText(currentDate);
-        myPlace.setYear(year);
-        myPlace.setMounth(month+1);
-        myPlace.setDay(dayOfMonth);
-
-
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -189,6 +174,21 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
         datePicker.show(getFragmentManager(), "date picker");
 
     }
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String currentDate = DateFormat.getDateInstance().format(c.getTime());
+        addDate.setText(currentDate);
+        myPlace.setYear(year);
+        myPlace.setMounth(month+1);
+        myPlace.setDay(dayOfMonth);
+
+
+    }
+
 
     private void initAdress() {
         adressOfUser = adress.getText().toString();

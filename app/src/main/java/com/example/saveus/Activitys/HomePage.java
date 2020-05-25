@@ -4,32 +4,35 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.example.saveus.Fragments.AddPlace;
 import com.example.saveus.Fragments.HomeStart;
 import com.example.saveus.Fragments.MyPlaces;
-import com.example.saveus.Fragments.OnBoarding1;
-import com.example.saveus.Fragments.OnBoarding2;
-import com.example.saveus.Fragments.OnBoarding3;
 import com.example.saveus.Fragments.PlacesAndMap;
-import com.example.saveus.Fragments.changePlace;
+import com.example.saveus.Fragments.ChangePlace;
 import com.example.saveus.Objects.Place;
 import com.example.saveus.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener ,changePlace.OnFragmentInteractionListener{
+public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener ,
+        ChangePlace.OnFragmentInteractionListener{
     BottomNavigationView mybottomNavigation;
     HomeStart homeStart ;
     LinearLayout linearLayout;
     ArrayList<Place> myPlaces;
+    public static String KEYOFPLACES ="myplaces";
 
 
 
@@ -40,15 +43,29 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
         setContentView(R.layout.activity_home_page);
         mybottomNavigation = findViewById(R.id.hp_BottomNavigationView);
         linearLayout = findViewById(R.id.linear_tag);
-        myPlaces = new ArrayList();
+        initializeMyPlaces();
         mybottomNavigation.setItemIconTintList(null);
         homeStart = new HomeStart();
         openFragment(HomeStart.newInstance(myPlaces));
 
 
-
         initLisitnerOfNavigation();
 
+    }
+
+    private void initializeMyPlaces() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        Gson gson = new Gson();
+        String json = sharedPrefs.getString(KEYOFPLACES, null);
+        Type type = new TypeToken<ArrayList<Place>>() {}.getType();
+        myPlaces = gson.fromJson(json,type);
+        if(myPlaces == null){
+            myPlaces = new ArrayList();
+
+        }
+        else {
+            myPlaces = gson.fromJson(json,type);
+        }
     }
 
     private void initLisitnerOfNavigation() {
@@ -96,8 +113,21 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
 
     @Override
     public void setMyPlace(Place myPlace) {
-        myPlaces.add(myPlace);
+        myPlaces.add(0,myPlace);
+        setMyPlacesTosharedPreferences();
         int a= 7;
+
+    }
+
+    private void setMyPlacesTosharedPreferences() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        Gson gson = new Gson();
+
+        String json = gson.toJson(myPlaces);
+
+        editor.putString(KEYOFPLACES, json);
+        editor.commit();
 
     }
 
@@ -107,8 +137,16 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     }
 
     @Override
+    public void addAndChangeMyPlacesInSharedPrefs(ArrayList<Place> myPlaces) {
+        this.myPlaces = myPlaces;
+        setMyPlacesTosharedPreferences();
+
+    }
+
+    @Override
     public void onItemClickPlace(ArrayList<Place>myPlaces, int position) {
-        openFragment(changePlace.newInstance(myPlaces,position));
+        linearLayout.setVisibility(View.GONE);
+        openFragment(ChangePlace.newInstance(myPlaces,position));
 
     }
 }

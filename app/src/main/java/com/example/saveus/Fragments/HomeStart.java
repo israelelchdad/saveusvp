@@ -189,10 +189,11 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
             for (int i = 0; i <places.size() ; i++) {
                 LatLng location = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
                 mMap.addMarker(new MarkerOptions().position(location).title("Marker in "+ location));
-                if(i+1==sizePlaces){
+                if(i==0){
                     LatLng mlatLng = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
 
                     mMap.moveCamera(CameraUpdateFactory.newLatLng(mlatLng));
+
 
                 }
 
@@ -204,6 +205,7 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
             LatLng jeruslem = new LatLng(31.78573509999,35.217018 );
 
             mMap.moveCamera(CameraUpdateFactory.newLatLng(jeruslem));
+
 
         }
     }
@@ -368,7 +370,7 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
 
     }
     private void addMyplaceToMyPlaces() {
-        places.add(myPlace);
+
         mListener.setMyPlace(myPlace);
         int a= 5;
     }
