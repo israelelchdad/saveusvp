@@ -30,6 +30,18 @@ public class Place implements Parcelable {
     }
     public Place() {
     }
+    public Place(Place place) {
+        this.cityOfUser = place.getCityOfUser();
+        this.adressOfUser = place.getAdressOfUser();
+        this.startTime = place.getStartTime();
+        this.endTime = place.getEndTime();
+        this.allTime = place.getAllTime();
+        this.year = place.getYear();
+        this.mounth = place.getMounth();
+        this.day = place.getDay();
+        this.latitude = place.getLatitude();
+        this.longitude = place.getLongitude();
+    }
 
     protected Place(Parcel in) {
         cityOfUser = in.readString();

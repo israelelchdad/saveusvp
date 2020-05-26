@@ -102,16 +102,17 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
     }
 
     private void initPlaceToViews(View view) {
+        myPlace = new Place(places.get(position));
         editText = view.findViewById(R.id.f_cange_add_adress);
-        editText.setHint(places.get(position).getAdressOfUser());
+        editText.setHint(myPlace.getAdressOfUser());
         changeDate = view.findViewById(R.id.f_change_add_date);
-        changeDate.setText(places.get(position).getDay()+"/"+places.get(position).getMounth()+"/"+places.get(position).getYear());
+        changeDate.setText(myPlace.getDay()+"/"+myPlace.getMounth()+"/"+myPlace.getYear());
         startTime = view.findViewById(R.id.f_cehnge_time_start);
-        startTime.setText(places.get(position).getStartTime());
+        startTime.setText(myPlace.getStartTime());
         endtTime =view.findViewById(R.id.f_chenge_endttime);
-        endtTime.setText(places.get(position).getEndTime());
+        endtTime.setText(myPlace.getEndTime());
         allTime =view.findViewById(R.id.f_cange_all_time);
-        allTime.setText(places.get(position).getAllTime());
+        allTime.setText(myPlace.getAllTime());
         chngeOfDate = view.findViewById(R.id.chnge_plaice_date_IV);
         chngeOfDate.setOnClickListener(this);
         changStartTime = view.findViewById(R.id.f_chang_starttime);
@@ -260,10 +261,20 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
 
     }
     private void initAdress() {
+
         adressOfUser = editText.getText().toString();
-        myPlace.setAdressOfUser(adressOfUser);
         LatLng l = getLocationFromAddress(adressOfUser);
-        initLatlngOfPlace(l);
+        if (l==null){
+            setNewPlaceToPlaces();
+
+
+        }
+        else {
+            myPlace.setAdressOfUser(adressOfUser);
+            initLatlngOfPlace(l);
+        }
+
+
     }
     private void initLatlngOfPlace( LatLng latLng) {
         myPlace.setLatitude(latLng.latitude);
