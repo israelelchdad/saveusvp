@@ -208,7 +208,9 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 textView.setText( setTime(selectedHour) + ":" + setTime(selectedMinute));
-                myPlace.setStartTime( setTime(selectedHour) + ":" + setTime(selectedMinute));
+                myPlace.setHour(selectedHour);
+                myPlace.setMinute(selectedMinute);
+//                myPlace.setStartTime( setTime(selectedHour) + ":" + setTime(selectedMinute));
                 startHour = selectedHour;
                 startMinute =selectedMinute;
             }
@@ -234,6 +236,7 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
                     return;
                 }
                 textView.setText( setTime(selectedHour) + ":" +setTime( selectedMinute));
+
                 myPlace.setEndTime( setTime(selectedHour) + ":" +setTime( selectedMinute));
                 alltime(startHour,startMinute,endHour,endMinute);
             }

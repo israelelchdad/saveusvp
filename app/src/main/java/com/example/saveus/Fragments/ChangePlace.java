@@ -108,9 +108,9 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
         changeDate = view.findViewById(R.id.f_change_add_date);
         changeDate.setText(myPlace.getDay()+"/"+myPlace.getMounth()+"/"+myPlace.getYear());
         startTime = view.findViewById(R.id.f_cehnge_time_start);
-        startTime.setText(myPlace.getStartTime());
-        endtTime =view.findViewById(R.id.f_chenge_endttime);
-        endtTime.setText(myPlace.getEndTime());
+        startTime.setText(AddPlace.setTime(myPlace.getHour())+":"+AddPlace.setTime(myPlace.getMinute())+":"+AddPlace.setTime(myPlace.getSecends()));
+        endtTime = view.findViewById(R.id.f_chenge_endttime);
+        endtTime.setText(myPlace.getEndTime()+":"+AddPlace.setTime(myPlace.getEndsecends()));
         allTime =view.findViewById(R.id.f_cange_all_time);
         allTime.setText(myPlace.getAllTime());
         chngeOfDate = view.findViewById(R.id.chnge_plaice_date_IV);
@@ -214,7 +214,10 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                 textView.setText( AddPlace.setTime(selectedHour) + ":" + AddPlace.setTime(selectedMinute));
-                myPlace.setStartTime( AddPlace.setTime(selectedHour) + ":" + AddPlace.setTime(selectedMinute));
+                myPlace.setHour(selectedHour);
+                myPlace.setMinute(selectedMinute);
+
+//                myPlace.setStartTime( AddPlace.setTime(selectedHour) + ":" + AddPlace.setTime(selectedMinute));
                 startHour = selectedHour;
                 startMinute = selectedMinute;
             }

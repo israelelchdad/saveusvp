@@ -275,9 +275,8 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
 
         }
         else {
-            latitude = 0.0;
-            longitude = 0.0;
-
+            latitude =31.78573509999 ;
+            longitude = 35.217018;
         }
 
         chengBeckgroundViews();
@@ -334,7 +333,10 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
         myPlace.setYear(Calendar.getInstance().get(Calendar.YEAR));
         myPlace.setMounth(Calendar.getInstance().get(Calendar.MONTH)+1);
         myPlace.setDay(Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
-        myPlace.setStartTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
+        myPlace.setHour(Calendar.getInstance().get(Calendar.HOUR));
+        myPlace.setMinute(Calendar.getInstance().get(Calendar.MINUTE));
+        myPlace.setSecends(Calendar.getInstance().get(Calendar.SECOND));
+//        myPlace.setStartTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
         myPlace.setLatitude(latitude);
         myPlace.setLongitude(longitude);
 
@@ -354,7 +356,11 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
 
     }
     private void setEndMyPlace() {
-        myPlace.setEndTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
+
+//        myPlace.setEndTime(new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date()));
+        myPlace.setEndTime(AddPlace.setTime(Calendar.getInstance().get(Calendar.HOUR))+":"+AddPlace.setTime( Calendar.getInstance().get(Calendar.MINUTE)));
+        myPlace.setEndsecends(Calendar.getInstance().get(Calendar.SECOND));
+
     }
 
 

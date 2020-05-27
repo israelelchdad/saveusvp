@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.saveus.Fragments.AddPlace;
 import com.example.saveus.Fragments.MyPlaces;
 import com.example.saveus.Objects.Place;
 import com.example.saveus.R;
@@ -70,7 +71,7 @@ public class AdapterRecyclerViewMyPlaces extends  RecyclerView.Adapter<AdapterRe
         public void setHolder(Place place) {
             myPlace =place;
             adress.setText(place.getAdressOfUser());
-            startTimeEndTime.setText(place.getStartTime()+" - "+place.getEndTime());
+            startTimeEndTime.setText(place.getEndTime()+" - "+ AddPlace.setTime(place.getHour())+":"+AddPlace.setTime(place.getMinute()));
             allTime.setText(place.getAllTime());
 
 

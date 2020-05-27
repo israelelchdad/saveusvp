@@ -1,12 +1,17 @@
 package com.example.saveus.Objects;
 
+import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+@SuppressLint("ParcelCreator")
 public class Place implements Parcelable {
     private String cityOfUser;
     private String adressOfUser;
-    private String startTime;
+    private int hour;
+    private int minute;
+    private int secends;
+    private int endsecends;
     private String endTime;
     private String allTime;
     private   int year;
@@ -15,11 +20,13 @@ public class Place implements Parcelable {
     private Double latitude   ;
     private double longitude;
 
-
-    public Place(String cityOfUser, String adressOfUser, String startTime, String endTime, String allTime, int year, int mounth, int day, Double latitude, double longitude) {
+    public Place(String cityOfUser, String adressOfUser, int hour, int minute, int secends, int endsecends, String endTime, String allTime, int year, int mounth, int day, Double latitude, double longitude) {
         this.cityOfUser = cityOfUser;
         this.adressOfUser = adressOfUser;
-        this.startTime = startTime;
+        this.hour = hour;
+        this.minute = minute;
+        this.secends = secends;
+        this.endsecends = endsecends;
         this.endTime = endTime;
         this.allTime = allTime;
         this.year = year;
@@ -28,49 +35,76 @@ public class Place implements Parcelable {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+
+
+
     public Place() {
     }
-    public Place(Place place) {
-        this.cityOfUser = place.getCityOfUser();
-        this.adressOfUser = place.getAdressOfUser();
-        this.startTime = place.getStartTime();
-        this.endTime = place.getEndTime();
-        this.allTime = place.getAllTime();
-        this.year = place.getYear();
-        this.mounth = place.getMounth();
-        this.day = place.getDay();
-        this.latitude = place.getLatitude();
-        this.longitude = place.getLongitude();
+
+    public String getCityOfUser() {
+        return cityOfUser;
     }
 
-    protected Place(Parcel in) {
-        cityOfUser = in.readString();
-        adressOfUser = in.readString();
-        startTime = in.readString();
-        endTime = in.readString();
-        allTime = in.readString();
-        year = in.readInt();
-        mounth = in.readInt();
-        day = in.readInt();
-        if (in.readByte() == 0) {
-            latitude = null;
-        } else {
-            latitude = in.readDouble();
-        }
-        longitude = in.readDouble();
+    public void setCityOfUser(String cityOfUser) {
+        this.cityOfUser = cityOfUser;
     }
 
-    public static final Creator<Place> CREATOR = new Creator<Place>() {
-        @Override
-        public Place createFromParcel(Parcel in) {
-            return new Place(in);
-        }
+    public String getAdressOfUser() {
+        return adressOfUser;
+    }
 
-        @Override
-        public Place[] newArray(int size) {
-            return new Place[size];
-        }
-    };
+    public void setAdressOfUser(String adressOfUser) {
+        this.adressOfUser = adressOfUser;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
+    }
+
+    public int getMinute() {
+        return minute;
+    }
+
+    public void setMinute(int minute) {
+        this.minute = minute;
+    }
+
+    public int getSecends() {
+        return secends;
+    }
+
+    public void setSecends(int secends) {
+        this.secends = secends;
+    }
+
+    public int getEndsecends() {
+        return endsecends;
+    }
+
+    public void setEndsecends(int endsecends) {
+        this.endsecends = endsecends;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getAllTime() {
+        return allTime;
+    }
+
+    public void setAllTime(String allTime) {
+        this.allTime = allTime;
+    }
 
     public int getYear() {
         return year;
@@ -112,59 +146,55 @@ public class Place implements Parcelable {
         this.longitude = longitude;
     }
 
-
-
-    public String getCityOfUser() {
-        return cityOfUser;
+    public static Creator<Place> getCREATOR() {
+        return CREATOR;
     }
 
-    public void setCityOfUser(String cityOfUser) {
-        this.cityOfUser = cityOfUser;
-    }
-
-    public String getAdressOfUser() {
-        return adressOfUser;
-    }
-
-    public void setAdressOfUser(String adressOfUser) {
-        this.adressOfUser = adressOfUser;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getAllTime() {
-        return allTime;
-    }
-
-    public void setAllTime(String allTime) {
-        this.allTime = allTime;
+    public Place(Place place) {
+        this.cityOfUser = place.getCityOfUser();
+        this.adressOfUser = place.getAdressOfUser();
+        this.hour = place.getHour();
+        this.minute = place.getMinute();
+        this.endsecends = place.endsecends;
+        this.secends  = place.getSecends();
+        this.endTime = place.getEndTime();
+        this.allTime = place.getAllTime();
+        this.year = place.getYear();
+        this.mounth = place.getMounth();
+        this.day = place.getDay();
+        this.latitude = place.getLatitude();
+        this.longitude = place.getLongitude();
     }
 
 
-    @Override
-    public int describeContents() {
-        return 0;
+    protected Place(Parcel in) {
+        cityOfUser = in.readString();
+        adressOfUser = in.readString();
+        hour = in.readInt();
+        minute = in.readInt();
+        secends = in.readInt();
+        endsecends = in.readInt();
+        endTime = in.readString();
+        allTime = in.readString();
+        year = in.readInt();
+        mounth = in.readInt();
+        day = in.readInt();
+        if (in.readByte() == 0) {
+            latitude = null;
+        } else {
+            latitude = in.readDouble();
+        }
+        longitude = in.readDouble();
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(cityOfUser);
         dest.writeString(adressOfUser);
-        dest.writeString(startTime);
+        dest.writeInt(hour);
+        dest.writeInt(minute);
+        dest.writeInt(secends);
+        dest.writeInt(endsecends);
         dest.writeString(endTime);
         dest.writeString(allTime);
         dest.writeInt(year);
@@ -178,4 +208,21 @@ public class Place implements Parcelable {
         }
         dest.writeDouble(longitude);
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Place> CREATOR = new Creator<Place>() {
+        @Override
+        public Place createFromParcel(Parcel in) {
+            return new Place(in);
+        }
+
+        @Override
+        public Place[] newArray(int size) {
+            return new Place[size];
+        }
+    };
 }
