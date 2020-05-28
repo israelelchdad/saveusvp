@@ -5,7 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 @SuppressLint("ParcelCreator")
-public class Place implements Parcelable {
+public class Place implements Parcelable,Comparable<Place> {
     private String cityOfUser;
     private String adressOfUser;
     private int hour;
@@ -225,4 +225,11 @@ public class Place implements Parcelable {
             return new Place[size];
         }
     };
+
+    @Override
+    public int compareTo(Place o) {
+        int date1=  ((((this.getYear()*365)+(this.getMounth()*30)+(this.getDay()))*24)*3600)+(this.getHour()*3600)+(this.getMinute()*60)+this.getSecends();
+        int date2=  ((((o.getYear()*365)+(o.getMounth()*30)+(o.getDay()))*24)*3600)+(o.getHour()*3600)+(o.getMinute()*60)+o.getSecends();
+        return date2-date1;
+    }
 }

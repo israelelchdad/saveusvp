@@ -25,6 +25,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener ,
         ChangePlace.OnFragmentInteractionListener{
@@ -114,6 +115,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     @Override
     public void setMyPlace(Place myPlace) {
         myPlaces.add(0,myPlace);
+        Collections.sort(myPlaces);
         setMyPlacesTosharedPreferences();
         int a= 7;
 
