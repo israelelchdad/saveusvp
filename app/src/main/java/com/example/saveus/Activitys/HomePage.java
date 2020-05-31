@@ -114,11 +114,36 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
 
     @Override
     public void setMyPlace(Place myPlace) {
-        myPlaces.add(0,myPlace);
-        Collections.sort(myPlaces);
+//        myPlaces.add(0,myPlace);
+        addplaceToMyPlaces(myPlace);
+        myPlaces.add(addplaceToMyPlaces(myPlace),myPlace);
+//        Collections.sort(myPlaces);
         setMyPlacesTosharedPreferences();
         int a= 7;
 
+    }
+
+    private int addplaceToMyPlaces(Place mPlace) {
+        for (int i = 0; i <= myPlaces.size(); i++) {
+            if( i == myPlaces.size()){
+
+                return i;
+            }
+            if (mPlace.getYear() > myPlaces.get(i).getYear()
+                    || mPlace.getYear() == myPlaces.get(i).getYear() && mPlace.getMounth() > myPlaces.get(i).getMounth()
+                    || mPlace.getYear() == myPlaces.get(i).getYear() && mPlace.getMounth() == myPlaces.get(i).getMounth() && mPlace.getDay() > myPlaces.get(i).getDay()
+                    || mPlace.getYear() == myPlaces.get(i).getYear() && mPlace.getMounth() == myPlaces.get(i).getMounth() && mPlace.getDay() == myPlaces.get(i).getDay() && mPlace.getHour() > myPlaces.get(i).getHour()
+
+                    || mPlace.getYear() == myPlaces.get(i).getYear() && mPlace.getMounth() == myPlaces.get(i).getMounth() && mPlace.getDay() == myPlaces.get(i).getDay() && mPlace.getHour() == myPlaces.get(i).getHour() && mPlace.getMinute() > myPlaces.get(i).getMinute()
+                    || mPlace.getYear() == myPlaces.get(i).getYear() && mPlace.getMounth() == myPlaces.get(i).getMounth() && mPlace.getDay() == myPlaces.get(i).getDay() && mPlace.getHour() == myPlaces.get(i).getHour() && mPlace.getMinute() == myPlaces.get(i).getMinute() && mPlace.getSecends() > myPlaces.get(i).getSecends())
+            {
+
+                return i;
+
+            }
+
+        }
+        return  0;
     }
 
     private void setMyPlacesTosharedPreferences() {

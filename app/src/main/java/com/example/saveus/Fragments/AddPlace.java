@@ -195,6 +195,8 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
         myPlace.setAdressOfUser(adressOfUser);
         LatLng l = getLocationFromAddress(adressOfUser);
         initLatlngOfPlace(l);
+
+
     }
 
 
@@ -289,9 +291,13 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
 
 
     private void initLatlngOfPlace( LatLng latLng) {
-        myPlace.setLatitude(latLng.latitude);
-        myPlace.setLongitude(latLng.longitude);
-        int a =5;
+        if(latLng!=null){
+            myPlace.setLatitude(latLng.latitude);
+            myPlace.setLongitude(latLng.longitude);
+
+        }
+
+
     }
 
     public LatLng getLocationFromAddress(String strAddress) {

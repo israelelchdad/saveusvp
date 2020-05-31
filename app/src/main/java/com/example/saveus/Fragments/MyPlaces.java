@@ -12,7 +12,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.saveus.Adapters.AdapterDaets;
 import com.example.saveus.Adapters.AdapterRecyclerViewMyPlaces;
+import com.example.saveus.Objects.MyDate;
 import com.example.saveus.Objects.Place;
 import com.example.saveus.R;
 
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.ItemClickListener{
     private static String KeyMPlaces ="MYPLACES";
     public ArrayList<Place> places = new ArrayList<>();
+    public ArrayList <MyDate> myDates = new ArrayList<>();
 
     private OnFragmentInteractionListener mListener;
 
@@ -45,6 +48,8 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             places = getArguments().getParcelableArrayList(KeyMPlaces);
+            setDates();
+
 
             int a =5;
             int b =6;
@@ -52,14 +57,64 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
         }
     }
 
+    private void setDates() {
+        if(places.size()>0){
+            myDates.add(setOneDates(places.get(0)));
+
+        }
+        if(places.size()==1){
+            return;
+
+        }
+
+        for (int i = 1; i <= places.size(); i++) {
+
+            if(places.get(i).getYear()== places.get(i-1).getYear()
+                    &&places.get(i).getMounth()==places.get(i-1).getMounth()
+                    &&places.get(i).getDay()==places.get(i-1).getDay()){
+
+                myDates.get(myDates.size()).getPlaces().add(places.get(i));
+
+            }else {
+                myDates.add(setOneDates(places.get(i)));
+            }
+
+
+
+        }
+
+    }
+
+    private MyDate setOneDates(Place place) {
+        MyDate mMyDate = new MyDate();
+        mMyDate.setYear(place.getYear());
+        mMyDate.setMounth(place.getMounth());
+        mMyDate.setDay(place.getDay());
+        ArrayList<Place> myplaces = new ArrayList<>();
+        myplaces.add(place);
+        mMyDate.setPlaces(myplaces);
+        return mMyDate;
+
+    }
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_my_places2, container, false);
-        initRecyrclerView(view);
+//        initRecyrclerView(view);
+        initRvDates(view);
         return view;
 
+    }
+
+    private void initRvDates(View v) {
+        RecyclerView recyclerView = v.findViewById(R.id.f_myplaces_RV);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        AdapterDaets myAdapter = new AdapterDaets(getContext(), myDates);
+//        myAdapter.setClickListener(this);
+        recyclerView.setAdapter(myAdapter);
     }
 
     private void initRecyrclerView(View v) {
