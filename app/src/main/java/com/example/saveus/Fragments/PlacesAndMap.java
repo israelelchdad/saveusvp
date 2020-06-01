@@ -117,9 +117,10 @@ public class PlacesAndMap extends Fragment implements MyPlaces.OnFragmentInterac
     }
 
     @Override
-    public void onItemClickPlace(ArrayList<Place> myPlaces, int position) {
+    public void onItemClickPlace(Place myPlace) {
 
     }
+
 
     public interface MoveToAddPlacenListener {
 

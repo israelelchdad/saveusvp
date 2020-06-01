@@ -4,21 +4,31 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.saveus.Fragments.AddPlace;
 import com.example.saveus.Objects.MyDate;
 import com.example.saveus.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder>  {
     private LayoutInflater mInflater;
     private ArrayList<MyDate> myMyDates;
+    private Context context;
+    private ButtonClickListener buttonClickListener;
 
-    public AdapterDaets(Context context, ArrayList<MyDate> data ) {
+    public AdapterDaets(Context context, ArrayList<MyDate> data,ButtonClickListener buttonClickListener ) {
+
+        this.context =context;
+        this.buttonClickListener = buttonClickListener;
         this.mInflater = LayoutInflater.from(context);
         this.myMyDates = data;
     }
@@ -41,13 +51,22 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView date;
-        private TextView startTimeEndTime;
-        private TextView allTime;
+        private TextView dateTody;
+        private TextView todayOryYesterdey;
+
+        private ImageView imageView;
+        View viewItemOneDate;
+
         private MyDate myDate;
 
         ViewHolder(View itemView) {
             super(itemView);
+            viewItemOneDate = itemView;
             date = itemView.findViewById(R.id.item_one_date_text_DATE);
+            dateTody = itemView.findViewById(R.id.item_one_date_text_DATE_TODAY);
+            todayOryYesterdey =itemView.findViewById(R.id.item_one_date_text_today_yesterdey);
+            imageView =itemView.findViewById(R.id.item_one_date_button_to_list);
+//            mbutton.setOnClickListener(this);
 
            itemView.setOnClickListener(this);
         }
@@ -55,15 +74,48 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
 
         public void setHolder(MyDate mdate) {
             myDate = mdate;
-            date.setText(mdate.getYear()+"/"+mdate.getMounth()+"/"+mdate.getDay());
+            iftodayoryesterday();
+
+
+        }
+
+        private void iftodayoryesterday() {
+           int year= Calendar.getInstance().get(Calendar.YEAR);
+            int mounth = Calendar.getInstance().get(Calendar.MONTH)+1;
+            int day= Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+            if(myDate.getYear()==year&&myDate.getMounth()==mounth&&myDate.getDay()==day){
+                date.setVisibility(View.GONE);
+                imageView.setVisibility(View.GONE);
+                dateTody.setVisibility(View.VISIBLE);
+                dateTody.setText(AddPlace.setTime(myDate.getDay())+"/"+AddPlace.setTime(myDate.getMounth())+"/"+AddPlace.setTime(myDate.getYear()));
+                todayOryYesterdey.setVisibility(View.VISIBLE);
+                todayOryYesterdey.setText("היום");
+
+
+            }
+            else {
+                date.setVisibility(View.VISIBLE);
+                imageView.setVisibility(View.VISIBLE);
+                dateTody.setVisibility(View.GONE);
+                todayOryYesterdey.setVisibility(View.GONE);
+                date.setText(AddPlace.setTime(myDate.getDay())+"/"+AddPlace.setTime(myDate.getMounth())+"/"+AddPlace.setTime(myDate.getYear()));
+
+            }
         }
 
         @Override
         public void onClick(View view) {
-//            if (mClickListener != null) {
-//                mClickListener.onItemClick( getAdapterPosition());
+            if (buttonClickListener != null){
+                buttonClickListener.onButtonClicMoveDate(viewItemOneDate,myDate);
+            }
+
+
+
             }
 
         }
+    public interface ButtonClickListener {
+        void onButtonClicMoveDate(View viewItemOneDate, MyDate myDate);
+    }
     }
 

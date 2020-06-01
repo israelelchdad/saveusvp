@@ -53,6 +53,7 @@ public class Map extends Fragment implements OnMapReadyCallback,View.OnClickList
     private SupportMapFragment mapFragment;
     private static String KeyMPlace ="MYPLACE";
     private ArrayList<Place> places =new ArrayList<>();
+    LatLng location;
 
 
     public static Map newInstance(ArrayList<Place> myPlaces) {
@@ -129,10 +130,18 @@ public class Map extends Fragment implements OnMapReadyCallback,View.OnClickList
         int lengthPlaces = places.size();
         if(lengthPlaces>0){
             for (int i = 0; i < places.size() ; i++) {
-                LatLng location = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
-                googleMap.addMarker(new MarkerOptions().position(location).title("Marker in jeruslem"));
+                if(places.get(i).getLatitude()!=null){
+                     location = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
+                    googleMap.addMarker(new MarkerOptions().position(location).title("Marker in jeruslem"));
+
+                }
+
                 if(i==0){
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+                    if(location!=null){
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+
+                    }
+
 
                 }
 

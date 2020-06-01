@@ -171,9 +171,9 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     }
 
     @Override
-    public void onItemClickPlace(ArrayList<Place>myPlaces, int position) {
+    public void onItemClickPlace(Place myPlace) {
         linearLayout.setVisibility(View.GONE);
-        openFragment(ChangePlace.newInstance(myPlaces,position));
+        openFragment(ChangePlace.newInstance(myPlaces,myPlace));
 
     }
 }

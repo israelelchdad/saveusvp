@@ -187,12 +187,22 @@ public class HomeStart extends Fragment implements OnMapReadyCallback,View.OnCli
         int sizePlaces = places.size();
         if(sizePlaces >0){
             for (int i = 0; i <places.size() ; i++) {
-                LatLng location = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
-                mMap.addMarker(new MarkerOptions().position(location).title("Marker in "+ location));
-                if(i==0){
-                    LatLng mlatLng = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
+                if(places.get(i).getLatitude()!=null ){
+                    LatLng location = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
+                    mMap.addMarker(new MarkerOptions().position(location).title("Marker in "+ location));
 
-                    mMap.moveCamera(CameraUpdateFactory.newLatLng(mlatLng));
+                }
+
+
+
+                if(i==0){
+                    if(places.get(i).getLatitude()!=null){
+                        LatLng mlatLng = new LatLng(places.get(i).getLatitude(),places.get(i).getLongitude() );
+
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(mlatLng));
+
+                    }
+
 
 
                 }

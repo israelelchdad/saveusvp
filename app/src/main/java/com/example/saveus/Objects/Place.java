@@ -4,6 +4,10 @@ import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.Nullable;
+
+import java.util.Objects;
+
 @SuppressLint("ParcelCreator")
 public class Place implements Parcelable,Comparable<Place> {
     private String cityOfUser;
@@ -226,11 +230,34 @@ public class Place implements Parcelable,Comparable<Place> {
         }
     };
 
+
     @Override
     public int compareTo(Place o) {
-//        int date1 = ((((this.getYear()*365)+(this.getMounth()*30)+(this.getDay()))*24)*3600)+(this.getHour()*3600)+(this.getMinute()*60)+this.getSecends();
-//        int date2 = ((((o.getYear()*365)+(o.getMounth()*30)+(o.getDay()))*24)*3600)+(o.getHour()*3600)+(o.getMinute()*60)+o.getSecends();
-//        return date2-date1;
-        return 1;
+        return 0;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Place place = (Place) o;
+        return hour == place.hour &&
+                minute == place.minute &&
+                secends == place.secends &&
+                endsecends == place.endsecends &&
+                year == place.year &&
+                mounth == place.mounth &&
+                day == place.day &&
+                Double.compare(place.longitude, longitude) == 0 &&
+                Objects.equals(cityOfUser, place.cityOfUser) &&
+                Objects.equals(adressOfUser, place.adressOfUser) &&
+                Objects.equals(endTime, place.endTime) &&
+                Objects.equals(allTime, place.allTime) &&
+                Objects.equals(latitude, place.latitude);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cityOfUser, adressOfUser, hour, minute, secends, endsecends, endTime, allTime, year, mounth, day, latitude, longitude);
     }
 }

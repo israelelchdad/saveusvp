@@ -82,7 +82,7 @@ public class AdapterRecyclerViewMyPlaces extends  RecyclerView.Adapter<AdapterRe
         @Override
         public void onClick(View view) {
             if (mClickListener != null) {
-                mClickListener.onItemClick( getAdapterPosition());
+                mClickListener.onItemClick(myPlace);
             }
 
         }
@@ -97,7 +97,7 @@ public class AdapterRecyclerViewMyPlaces extends  RecyclerView.Adapter<AdapterRe
 
     // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
-        void onItemClick( int position);
+        void onItemClick( Place myPlace);
     }
 }
 

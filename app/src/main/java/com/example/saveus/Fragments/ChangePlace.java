@@ -52,9 +52,10 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
     private ImageView chngeOfDate;
     private ImageView clearPlace;
     private static String KeyMPlaces ="MYPLACES";
-    private static String KeyMPosition ="MYPOSITION";
+    private static String KeyMPLACE ="MYPLACE";
     public ArrayList<Place> places = new ArrayList<>();
     private int position;
+    private Place p;
     private int startHour;
     private int startMinute;
     private int endHour;
@@ -70,11 +71,11 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
         // Required empty public constructor
     }
 
-    public static ChangePlace newInstance(ArrayList<Place> myPlaces, int position) {
+    public static ChangePlace newInstance(ArrayList<Place> myPlaces, Place myPlace) {
         ChangePlace fragment = new ChangePlace();
         Bundle args = new Bundle();
         args.putParcelableArrayList(KeyMPlaces, myPlaces);
-        args.putInt(KeyMPosition,position);
+        args.putParcelable(KeyMPLACE,myPlace);
         fragment.setArguments(args);
 
         return fragment;
@@ -85,7 +86,7 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             places = getArguments().getParcelableArrayList(KeyMPlaces);
-            position =getArguments().getInt(KeyMPosition);
+            p = getArguments().getParcelable(KeyMPLACE);
             myPlace = new Place();
 
 
@@ -102,7 +103,7 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
     }
 
     private void initPlaceToViews(View view) {
-        myPlace = new Place(places.get(position));
+        myPlace = new Place(p);
         editText = view.findViewById(R.id.f_cange_add_adress);
         editText.setHint(myPlace.getAdressOfUser());
         changeDate = view.findViewById(R.id.f_change_add_date);
@@ -310,12 +311,40 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
     }
 
     private void setNewPlaceToPlaces() {
-        places.set(position,myPlace);
+        removePlaceOld();
+        places.set(addplaceToMyPlacess(myPlace),myPlace);
+
+
         if(mListener !=null){
             mListener.addAndChangeMyPlacesInSharedPrefs(places);
         }
 
     }
+    private int addplaceToMyPlacess(Place mPlace) {
+        for (int i = 0; i < places.size(); i++) {
+            if( i == places.size()){
+
+                return i;
+            }
+            if (mPlace.getYear() > places.get(i).getYear()
+                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() > places.get(i).getMounth()
+                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() == places.get(i).getMounth() && mPlace.getDay() > places.get(i).getDay()
+                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() ==places.get(i).getMounth() && mPlace.getDay() == places.get(i).getDay() && mPlace.getHour() > places.get(i).getHour()
+
+                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() == places.get(i).getMounth() && mPlace.getDay() == places.get(i).getDay() && mPlace.getHour() == places.get(i).getHour() && mPlace.getMinute() > places.get(i).getMinute()
+                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() == places.get(i).getMounth() && mPlace.getDay() == places.get(i).getDay() && mPlace.getHour() == places.get(i).getHour() && mPlace.getMinute() == places.get(i).getMinute() && mPlace.getSecends() > places.get(i).getSecends())
+            {
+
+                return i;
+
+            }
+
+        }
+        return  0;
+    }
+
+
+
     private void clearMyPlace() {
         myPlace = null;
         editText.setHint("");
@@ -323,11 +352,23 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
         startTime.setText("00:00:00");
         endtTime.setText("00:00:00");
         allTime.setText("00:00:00");
-        places.remove(position);
+        removePlaceOld();
+
         if(mListener !=null){
             mListener.addAndChangeMyPlacesInSharedPrefs(places);
         }
 
+    }
+    private void removePlaceOld() {
+        int indexOfPlaceOld = 0;
+        for (int i = 0; i <places.size() ; i++) {
+            if(places.get(i).equals(p)){
+                indexOfPlaceOld = i;
+
+            }
+
+        }
+        places.remove(indexOfPlaceOld);
     }
 
 

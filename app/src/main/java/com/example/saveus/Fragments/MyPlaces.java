@@ -21,10 +21,14 @@ import com.example.saveus.R;
 import java.util.ArrayList;
 
 
-public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.ItemClickListener{
+
+public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.ItemClickListener,AdapterDaets.ButtonClickListener{
     private static String KeyMPlaces ="MYPLACES";
     public ArrayList<Place> places = new ArrayList<>();
     public ArrayList <MyDate> myDates = new ArrayList<>();
+    View view;
+    private boolean isList =true;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -67,13 +71,13 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
 
         }
 
-        for (int i = 1; i <= places.size(); i++) {
+        for (int i = 1; i < places.size(); i++) {
 
             if(places.get(i).getYear()== places.get(i-1).getYear()
                     &&places.get(i).getMounth()==places.get(i-1).getMounth()
                     &&places.get(i).getDay()==places.get(i-1).getDay()){
 
-                myDates.get(myDates.size()).getPlaces().add(places.get(i));
+                myDates.get(myDates.size()-1).getPlaces().add(places.get(i));
 
             }else {
                 myDates.add(setOneDates(places.get(i)));
@@ -101,29 +105,25 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_my_places2, container, false);
-//        initRecyrclerView(view);
+        view = inflater.inflate(R.layout.fragment_my_places2, container, false);
+
         initRvDates(view);
         return view;
 
     }
 
     private void initRvDates(View v) {
+
         RecyclerView recyclerView = v.findViewById(R.id.f_myplaces_RV);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        AdapterDaets myAdapter = new AdapterDaets(getContext(), myDates);
+        AdapterDaets myAdapter = new AdapterDaets(getContext(), myDates,this);
 //        myAdapter.setClickListener(this);
         recyclerView.setAdapter(myAdapter);
     }
 
-    private void initRecyrclerView(View v) {
-        RecyclerView recyclerView = v.findViewById(R.id.f_myplaces_RV);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        AdapterRecyclerViewMyPlaces  myAdapter = new AdapterRecyclerViewMyPlaces(getContext(),places,this );
-        myAdapter.setClickListener(this);
-        recyclerView.setAdapter(myAdapter);
-    }
+
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -152,18 +152,44 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
 
 
     @Override
-    public void onItemClick( int position) {
+    public void onItemClick( Place place) {
         if(mListener!=null){
-            mListener.onItemClickPlace(places,position);
+            mListener.onItemClickPlace(place);
 
         }
 
+    }
+
+    @Override
+    public void onButtonClicMoveDate(View viewItemOneData,MyDate myDate) {
+        if(isList){
+            initRecyrclerView(viewItemOneData,myDate.getPlaces());
+
+        }
+        else {
+            isList =true;
+            RecyclerView recyclerView = viewItemOneData.findViewById(R.id.myplaces_RV_of_oneDate);
+            recyclerView.setVisibility(View.GONE);
+        }
+
+
+
+
+    }
+    private void initRecyrclerView(View v,ArrayList<Place>myPlaces) {
+        isList = false;
+        RecyclerView recyclerView = v.findViewById(R.id.myplaces_RV_of_oneDate);
+        recyclerView.setVisibility(View.VISIBLE);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        AdapterRecyclerViewMyPlaces  myAdapter = new AdapterRecyclerViewMyPlaces(getContext(),myPlaces,this );
+        myAdapter.setClickListener(this);
+        recyclerView.setAdapter(myAdapter);
     }
 
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-        void onItemClickPlace(ArrayList<Place> myPlaces,int position);
+        void onItemClickPlace(Place myPlace);
     }
 }

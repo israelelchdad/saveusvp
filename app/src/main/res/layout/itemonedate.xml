@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="wrap_content">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginStart="0.5dp"
         android:layout_marginEnd="0.5dp"
-        android:layout_height="match_parent">
-
-
-
-            <TextView
+        android:layout_height="80dp">
+        <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -20,19 +17,45 @@
                 android:text="17/03/2020"
                 android:textColor="#051549"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentStart="true"
+            android:visibility="gone"
+            android:id="@+id/item_one_date_text_today_yesterdey"
+            android:text="17/03/2020"
+            android:textColor="#051549"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
 
-
-
-            <Button
-                android:id="@+id/item_text_starttime_endtime"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:background="@drawable/arrow"
-                android:layout_marginEnd="25dp"
+        <ImageView
+                android:id="@+id/item_one_date_button_to_list"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/arrow"
+                android:layout_marginEnd="10dp"
                 android:layout_centerInParent="true"
                 android:layout_alignParentEnd="true"
+
                 />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/item_one_date_text_DATE_TODAY"
+            android:text="17/03/2020"
+            android:textColor="#737684"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
 
         <View
             android:layout_width="match_parent"
@@ -40,6 +63,12 @@
             android:layout_alignParentBottom="true"
             android:background="#e0e0e0"/>
     </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/myplaces_RV_of_oneDate">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 
