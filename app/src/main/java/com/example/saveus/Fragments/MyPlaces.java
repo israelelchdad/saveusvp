@@ -1,5 +1,6 @@
 package com.example.saveus.Fragments;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.saveus.Adapters.AdapterDaets;
 import com.example.saveus.Adapters.AdapterRecyclerViewMyPlaces;
@@ -19,14 +24,31 @@ import com.example.saveus.Objects.Place;
 import com.example.saveus.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
-
-public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.ItemClickListener,AdapterDaets.ButtonClickListener{
+public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.ItemClickListener,AdapterDaets.ButtonClickListener,View.OnClickListener {
     private static String KeyMPlaces ="MYPLACES";
     public ArrayList<Place> places = new ArrayList<>();
     public ArrayList <MyDate> myDates = new ArrayList<>();
-    View view;
+    public View view;
+    private TextView startDate;
+    private TextView endDate;
+    private ImageView imgStartDate;
+
+    private ImageView imgEndDate;
+    private Button show;
+    private int yearStart;
+    private int mounthStart;
+    private int dayStart;
+    private int yearEnd;
+    private int monthEnd;
+    private int dayOfMonthEnd;
+    private  Calendar srart;
+    private  Calendar end;
+
+    private AdapterDaets myAdapter;
+
     private boolean isList =true;
 
 
@@ -55,11 +77,35 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
             setDates();
 
 
-            int a =5;
-            int b =6;
 
         }
     }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        // Inflate the layout for this fragment
+        view = inflater.inflate(R.layout.fragment_my_places2, container, false);
+        initViews(view);
+        initRvDates(view);
+        return view;
+
+    }
+     public void initViews(View view){
+          startDate = view.findViewById(R.id.f_myplaces_text_date_start);
+//          startDate.setOnClickListener(this);
+          endDate = view.findViewById(R.id.f_myplaces_text_date_end);
+//          endDate.setOnClickListener(this);
+          imgStartDate =view.findViewById(R.id.f_myplaces_img_date_start);
+          imgStartDate.setOnClickListener(this);
+          imgEndDate =view.findViewById(R.id.f_myplaces_img_date_end);
+          imgEndDate.setOnClickListener(this);
+          show = view.findViewById(R.id.f_myplaces_text_show);
+          show.setOnClickListener(this);
+
+     }
+
 
     private void setDates() {
         if(places.size()>0){
@@ -102,23 +148,11 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
     }
 
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_my_places2, container, false);
-
-        initRvDates(view);
-        return view;
-
-    }
-
     private void initRvDates(View v) {
 
         RecyclerView recyclerView = v.findViewById(R.id.f_myplaces_RV);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        AdapterDaets myAdapter = new AdapterDaets(getContext(), myDates,this);
+         myAdapter = new AdapterDaets(getContext(), myDates,this);
 //        myAdapter.setClickListener(this);
         recyclerView.setAdapter(myAdapter);
     }
@@ -185,6 +219,95 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
         myAdapter.setClickListener(this);
         recyclerView.setAdapter(myAdapter);
     }
+
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.f_myplaces_img_date_start :
+                initSartDate();
+
+                break;
+            case R.id.f_myplaces_img_date_end:
+                initEndDate();
+                break;
+
+
+            case R.id.f_myplaces_text_show :
+          initFilterDates();
+                break;
+
+        }
+
+
+    }
+
+
+
+    public void initSartDate(){
+         srart = Calendar.getInstance();
+        yearStart = srart.get(Calendar.YEAR);
+        mounthStart = srart.get(Calendar.MONTH);
+        dayStart = srart.get(Calendar.DAY_OF_MONTH);
+
+        // Launch Date Picker Dialog
+        DatePickerDialog dpd = new DatePickerDialog(getContext(),
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        // Display Selected date in textbox
+                        startDate.setText(dayOfMonth + "."
+                                + (monthOfYear + 1) + "." + year);
+                        srart.set(year,monthOfYear+1,dayOfMonth);
+                        yearStart =year;
+                        mounthStart= monthOfYear;
+                        dayStart = dayOfMonth;
+                    }
+                }, yearStart, mounthStart, dayStart);
+        dpd.show();
+
+    };
+
+
+
+
+
+    public void initEndDate(){
+        end = Calendar.getInstance();
+        yearEnd = end.get(Calendar.YEAR);
+        monthEnd = end.get(Calendar.MONTH);
+        dayOfMonthEnd = end.get(Calendar.DAY_OF_MONTH);
+
+        // Launch Date Picker Dialog
+        DatePickerDialog dpd = new DatePickerDialog(getContext(),
+                new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year,
+                                          int monthOfYear, int dayOfMonth) {
+                        // Display Selected date in textbox
+                        endDate.setText(dayOfMonth + "."
+                                + (monthOfYear + 1) + "." + year);
+                        end.set(year,monthOfYear+1,dayOfMonth);
+                        yearEnd = year;
+                        monthEnd = monthOfYear;
+                        dayOfMonthEnd = dayOfMonth;
+
+                    }
+                }, yearEnd, monthEnd, dayOfMonthEnd);
+        dpd.show();
+
+
+    };
+    private void initFilterDates() {
+        myAdapter.FilterOfDates(srart,end);
+
+
+    }
+
+
+
 
 
     public interface OnFragmentInteractionListener {

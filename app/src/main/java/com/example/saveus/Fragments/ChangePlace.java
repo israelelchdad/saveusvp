@@ -186,9 +186,10 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
                 initEndTime(endtTime);
                 break;
             case R.id.f_cange_place_save:
-                initAdress();
+                initAdressAndSsetNewPlace();
 
-                setNewPlaceToPlaces();
+
+
                 break;
             case R.id.f_change_place_clear:
                 clearMyPlace();
@@ -264,7 +265,7 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
         int a=5;
 
     }
-    private void initAdress() {
+    private void initAdressAndSsetNewPlace() {
 
         adressOfUser = editText.getText().toString();
         LatLng l = getLocationFromAddress(adressOfUser);
@@ -272,10 +273,12 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
             setNewPlaceToPlaces();
 
 
+
         }
         else {
             myPlace.setAdressOfUser(adressOfUser);
             initLatlngOfPlace(l);
+            setNewPlaceToPlaces();
         }
 
 
@@ -312,7 +315,7 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
 
     private void setNewPlaceToPlaces() {
         removePlaceOld();
-        places.set(addplaceToMyPlacess(myPlace),myPlace);
+        places.add(addplaceToMyPlacess(myPlace),myPlace);
 
 
         if(mListener !=null){
@@ -321,7 +324,7 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
 
     }
     private int addplaceToMyPlacess(Place mPlace) {
-        for (int i = 0; i < places.size(); i++) {
+        for (int i = 0; i <= places.size(); i++) {
             if( i == places.size()){
 
                 return i;
@@ -330,7 +333,6 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
                     || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() > places.get(i).getMounth()
                     || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() == places.get(i).getMounth() && mPlace.getDay() > places.get(i).getDay()
                     || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() ==places.get(i).getMounth() && mPlace.getDay() == places.get(i).getDay() && mPlace.getHour() > places.get(i).getHour()
-
                     || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() == places.get(i).getMounth() && mPlace.getDay() == places.get(i).getDay() && mPlace.getHour() == places.get(i).getHour() && mPlace.getMinute() > places.get(i).getMinute()
                     || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() == places.get(i).getMounth() && mPlace.getDay() == places.get(i).getDay() && mPlace.getHour() == places.get(i).getHour() && mPlace.getMinute() == places.get(i).getMinute() && mPlace.getSecends() > places.get(i).getSecends())
             {
@@ -361,7 +363,7 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
     }
     private void removePlaceOld() {
         int indexOfPlaceOld = 0;
-        for (int i = 0; i <places.size() ; i++) {
+        for (int i = 0; i < places.size() ; i++) {
             if(places.get(i).equals(p)){
                 indexOfPlaceOld = i;
 

@@ -5,11 +5,102 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Fragments.MyPlaces">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="18"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginStart="16dp"
+        android:orientation="horizontal"
+        android:layout_weight="48">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="334"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="136"
+                android:layout_height="match_parent"
+                android:background="@drawable/rectangele">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:id="@+id/f_myplaces_img_date_start"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="7dp"
+                    android:src="@drawable/calendar_1"
+                    android:layout_height="22dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:id="@+id/f_myplaces_text_date_start"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginEnd="30dp"
+                    android:layout_gravity="center"
+                    android:textColor="#737684"
+                   />
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="129"
+                android:layout_height="match_parent"
+                android:background="@drawable/rectangele">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:id="@+id/f_myplaces_img_date_end"
+                    android:layout_marginStart="7dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/calendar_1"
+                    android:layout_height="22dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginEnd="30dp"
+                    android:id="@+id/f_myplaces_text_date_end"
+                    android:layout_gravity="center"
+                    android:textColor="#737684"
+                   />
+
+            </LinearLayout>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="52"
+                android:text="הצג"
+                android:id="@+id/f_myplaces_text_show"
+                android:gravity="center"
+                android:textColor="#ffaa00"
+                android:textSize="16sp"
+
+                android:layout_height="match_parent"
+                android:background="@drawable/rectangeleyelow">
+
+            </Button>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="18"/>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="560"
         android:id="@+id/f_myplaces_RV">
 
     </androidx.recyclerview.widget.RecyclerView>

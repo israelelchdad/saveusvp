@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,11 +21,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder>  {
+public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> {
     private LayoutInflater mInflater;
-    private ArrayList<MyDate> myMyDates;
+
     private Context context;
     private ButtonClickListener buttonClickListener;
+    private ArrayList<MyDate> myMyDates;
+    private ArrayList<MyDate> myDatesFilter = new ArrayList<>();
+    private ArrayList<MyDate> myAllDates = new ArrayList<>();
 
     public AdapterDaets(Context context, ArrayList<MyDate> data,ButtonClickListener buttonClickListener ) {
 
@@ -46,6 +51,26 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
         return myMyDates.size();
     }
 
+   public void FilterOfDates(Calendar start , Calendar end){
+        myAllDates.addAll(myMyDates);
+       for (int i = 0; i < myAllDates.size() ; i++) {
+           Calendar c = Calendar.getInstance();
+           c.set(myAllDates.get(i).getYear(),myAllDates.get(i).getMounth(),myAllDates.get(i).getDay());
+           if(start.before(c)&& end.after(c)){
+               myDatesFilter.add(myAllDates.get(i));
+               int a = start.get(Calendar.YEAR);;
+           }
+
+
+       }
+       myMyDates.clear();
+       myMyDates.addAll(myDatesFilter);
+       notifyDataSetChanged();
+        int a = start.get(Calendar.YEAR);;
+        int v =5;
+
+
+   }
 
 
 
@@ -114,6 +139,7 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
             }
 
         }
+
     public interface ButtonClickListener {
         void onButtonClicMoveDate(View viewItemOneDate, MyDate myDate);
     }
