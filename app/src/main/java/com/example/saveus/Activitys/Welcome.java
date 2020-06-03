@@ -78,6 +78,7 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
     }
 
     private void moveToActivty() {
+        finish();
         startActivity(new Intent(getApplicationContext(), LoginActivity.class));
     }
 

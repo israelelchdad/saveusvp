@@ -39,9 +39,11 @@ public class OnPlash extends AppCompatActivity {
             SharedPreferences.Editor edit = settings.edit();
             edit.putBoolean(KEY, true);
             edit.commit();
+            finish();
 
             startActivity(new Intent(getApplicationContext(), Welcome.class));
         }else {
+            finish();
             startActivity(new Intent(getApplicationContext(), LoginActivity.class));
 
         }

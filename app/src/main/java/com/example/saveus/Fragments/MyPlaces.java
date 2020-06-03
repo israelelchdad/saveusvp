@@ -35,22 +35,13 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
     private TextView startDate;
     private TextView endDate;
     private ImageView imgStartDate;
-
     private ImageView imgEndDate;
     private Button show;
-    private int yearStart;
-    private int mounthStart;
-    private int dayStart;
-    private int yearEnd;
-    private int monthEnd;
-    private int dayOfMonthEnd;
     private  Calendar srart;
     private  Calendar end;
-
     private AdapterDaets myAdapter;
-
-    private boolean isList =true;
-
+    private boolean isList = true;
+    private boolean first = true;
 
     private OnFragmentInteractionListener mListener;
 
@@ -94,9 +85,7 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
     }
      public void initViews(View view){
           startDate = view.findViewById(R.id.f_myplaces_text_date_start);
-//          startDate.setOnClickListener(this);
           endDate = view.findViewById(R.id.f_myplaces_text_date_end);
-//          endDate.setOnClickListener(this);
           imgStartDate =view.findViewById(R.id.f_myplaces_img_date_start);
           imgStartDate.setOnClickListener(this);
           imgEndDate =view.findViewById(R.id.f_myplaces_img_date_end);
@@ -105,6 +94,14 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
           show.setOnClickListener(this);
 
      }
+    private void initRvDates(View v) {
+
+        RecyclerView recyclerView = v.findViewById(R.id.f_myplaces_RV);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        myAdapter = new AdapterDaets(getContext(), myDates,this);
+//        myAdapter.setClickListener(this);
+        recyclerView.setAdapter(myAdapter);
+    }
 
 
     private void setDates() {
@@ -148,14 +145,7 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
     }
 
 
-    private void initRvDates(View v) {
-
-        RecyclerView recyclerView = v.findViewById(R.id.f_myplaces_RV);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-         myAdapter = new AdapterDaets(getContext(), myDates,this);
-//        myAdapter.setClickListener(this);
-        recyclerView.setAdapter(myAdapter);
-    }
+   
 
 
 
@@ -197,7 +187,7 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
     @Override
     public void onButtonClicMoveDate(View viewItemOneData,MyDate myDate) {
         if(isList){
-            initRecyrclerView(viewItemOneData,myDate.getPlaces());
+            initRecyrclerViewOfOneOneDate(viewItemOneData,myDate.getPlaces());
 
         }
         else {
@@ -210,7 +200,7 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
 
 
     }
-    private void initRecyrclerView(View v,ArrayList<Place>myPlaces) {
+    private void initRecyrclerViewOfOneOneDate(View v,ArrayList<Place>myPlaces) {
         isList = false;
         RecyclerView recyclerView = v.findViewById(R.id.myplaces_RV_of_oneDate);
         recyclerView.setVisibility(View.VISIBLE);
@@ -244,10 +234,14 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
 
 
     public void initSartDate(){
-         srart = Calendar.getInstance();
-        yearStart = srart.get(Calendar.YEAR);
-        mounthStart = srart.get(Calendar.MONTH);
-        dayStart = srart.get(Calendar.DAY_OF_MONTH);
+          srart = Calendar.getInstance();
+
+        srart.set(Calendar.HOUR_OF_DAY, 00);
+        srart.set(Calendar.MINUTE, 0);
+        srart.set(Calendar.SECOND, 1);
+          int yearStart = srart.get(Calendar.YEAR);
+          int mounthStart = srart.get(Calendar.MONTH);
+          int dayStart = srart.get(Calendar.DAY_OF_MONTH);
 
         // Launch Date Picker Dialog
         DatePickerDialog dpd = new DatePickerDialog(getContext(),
@@ -260,9 +254,7 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
                         startDate.setText(dayOfMonth + "."
                                 + (monthOfYear + 1) + "." + year);
                         srart.set(year,monthOfYear+1,dayOfMonth);
-                        yearStart =year;
-                        mounthStart= monthOfYear;
-                        dayStart = dayOfMonth;
+
                     }
                 }, yearStart, mounthStart, dayStart);
         dpd.show();
@@ -275,9 +267,12 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
 
     public void initEndDate(){
         end = Calendar.getInstance();
-        yearEnd = end.get(Calendar.YEAR);
-        monthEnd = end.get(Calendar.MONTH);
-        dayOfMonthEnd = end.get(Calendar.DAY_OF_MONTH);
+        end.set(Calendar.HOUR_OF_DAY, 23);
+        end.set(Calendar.MINUTE, 59);
+        end.set(Calendar.SECOND, 55);
+         int yearEnd = end.get(Calendar.YEAR);
+         int monthEnd = end.get(Calendar.MONTH);
+         int dayOfMonthEnd = end.get(Calendar.DAY_OF_MONTH);
 
         // Launch Date Picker Dialog
         DatePickerDialog dpd = new DatePickerDialog(getContext(),
@@ -290,9 +285,6 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
                         endDate.setText(dayOfMonth + "."
                                 + (monthOfYear + 1) + "." + year);
                         end.set(year,monthOfYear+1,dayOfMonth);
-                        yearEnd = year;
-                        monthEnd = monthOfYear;
-                        dayOfMonthEnd = dayOfMonth;
 
                     }
                 }, yearEnd, monthEnd, dayOfMonthEnd);
@@ -301,8 +293,8 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
 
     };
     private void initFilterDates() {
-        myAdapter.FilterOfDates(srart,end);
 
+            myAdapter.FilterOfDates(srart,end);
 
     }
 

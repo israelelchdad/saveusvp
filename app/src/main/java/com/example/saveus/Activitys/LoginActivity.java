@@ -26,8 +26,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        Intent goToWelcomActivity = new Intent(getBaseContext(), HomePage.class);
-        startActivity(goToWelcomActivity);
+
+        Intent goToHomePagetivity = new Intent(getBaseContext(), HomePage.class);
+       finish();
+        startActivity(goToHomePagetivity);
     }
 
     }

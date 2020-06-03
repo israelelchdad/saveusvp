@@ -33,9 +33,11 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
     public AdapterDaets(Context context, ArrayList<MyDate> data,ButtonClickListener buttonClickListener ) {
 
         this.context =context;
+
         this.buttonClickListener = buttonClickListener;
         this.mInflater = LayoutInflater.from(context);
         this.myMyDates = data;
+        myAllDates.addAll(myMyDates);
     }
 
 
@@ -44,30 +46,31 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
         return new ViewHolder(view);
     }
     public void onBindViewHolder(AdapterDaets.ViewHolder holder, int position) {
-        holder.setHolder(myMyDates.get(position));
+        holder.setHolder(myAllDates.get(position));
 
     }
     public int getItemCount() {
-        return myMyDates.size();
+        return myAllDates.size();
     }
 
+
    public void FilterOfDates(Calendar start , Calendar end){
-        myAllDates.addAll(myMyDates);
-       for (int i = 0; i < myAllDates.size() ; i++) {
+        myDatesFilter.clear();
+        for (int i = 0; i < myMyDates.size() ; i++) {
            Calendar c = Calendar.getInstance();
-           c.set(myAllDates.get(i).getYear(),myAllDates.get(i).getMounth(),myAllDates.get(i).getDay());
+           c.set(myMyDates.get(i).getYear(),myMyDates.get(i).getMounth(),myMyDates.get(i).getDay());
            if(start.before(c)&& end.after(c)){
-               myDatesFilter.add(myAllDates.get(i));
-               int a = start.get(Calendar.YEAR);;
+               myDatesFilter.add(myMyDates.get(i));
+
            }
 
 
        }
-       myMyDates.clear();
-       myMyDates.addAll(myDatesFilter);
+       myAllDates.clear();
+       myAllDates.addAll(myDatesFilter);
        notifyDataSetChanged();
-        int a = start.get(Calendar.YEAR);;
-        int v =5;
+
+        int v = 5;
 
 
    }
@@ -105,7 +108,7 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
         }
 
         private void iftodayoryesterday() {
-           int year= Calendar.getInstance().get(Calendar.YEAR);
+            int year = Calendar.getInstance().get(Calendar.YEAR);
             int mounth = Calendar.getInstance().get(Calendar.MONTH)+1;
             int day= Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
             if(myDate.getYear()==year&&myDate.getMounth()==mounth&&myDate.getDay()==day){
@@ -115,6 +118,11 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
                 dateTody.setText(AddPlace.setTime(myDate.getDay())+"/"+AddPlace.setTime(myDate.getMounth())+"/"+AddPlace.setTime(myDate.getYear()));
                 todayOryYesterdey.setVisibility(View.VISIBLE);
                 todayOryYesterdey.setText("היום");
+//                if (buttonClickListener != null){
+//                    buttonClickListener.onButtonClicMoveDate(viewItemOneDate,myDate);
+//                }
+
+
 
 
             }
