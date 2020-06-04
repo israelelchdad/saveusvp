@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.saveus.Fragments.AddPlace;
 import com.example.saveus.Fragments.HomeStart;
 import com.example.saveus.Fragments.MyPlaces;
+import com.example.saveus.Fragments.PersonalInformation;
 import com.example.saveus.Fragments.PlacesAndMap;
 import com.example.saveus.Fragments.ChangePlace;
 import com.example.saveus.Objects.Place;
@@ -28,10 +30,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener ,
-        ChangePlace.OnFragmentInteractionListener{
+        ChangePlace.OnFragmentInteractionListener, View.OnClickListener,PersonalInformation.OnFragmentInteractionListener {
     BottomNavigationView mybottomNavigation;
     HomeStart homeStart ;
     LinearLayout linearLayout;
+    ImageView personalInformation;
+    ImageView close;
     ArrayList<Place> myPlaces;
     public static String KEYOFPLACES ="myplaces";
 
@@ -45,6 +49,12 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
         mybottomNavigation = findViewById(R.id.hp_BottomNavigationView);
         linearLayout = findViewById(R.id.linear_tag);
         initializeMyPlaces();
+        personalInformation = findViewById(R.id.ActivityHome_Personal_Information);
+        personalInformation.setOnClickListener(this);
+        close = findViewById(R.id.Ac_home_close_img);
+
+
+
         mybottomNavigation.setItemIconTintList(null);
         homeStart = new HomeStart();
         openFragment(HomeStart.newInstance(myPlaces));
@@ -115,13 +125,17 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     @Override
     public void setMyPlace(Place myPlace) {
 //        myPlaces.add(0,myPlace);
-        addplaceToMyPlaces(myPlace);
-        myPlaces.add(addplaceToMyPlaces(myPlace),myPlace);
+      int index=  addplaceToMyPlaces(myPlace);
+        myPlaces.add(index,myPlace);
 //        Collections.sort(myPlaces);
         setMyPlacesTosharedPreferences();
-        int a= 7;
+
+
 
     }
+
+
+
 
     private int addplaceToMyPlaces(Place mPlace) {
         for (int i = 0; i <= myPlaces.size(); i++) {
@@ -162,6 +176,12 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     public void onFragmentInteraction(Uri uri) {
 
     }
+    @Override
+    public void goToPlaceAndMap() {
+
+        openFragment(PlacesAndMap.newInstance(myPlaces));
+
+    }
 
     @Override
     public void addAndChangeMyPlacesInSharedPrefs(ArrayList<Place> myPlaces) {
@@ -170,10 +190,19 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
 
     }
 
+
     @Override
     public void onItemClickPlace(Place myPlace) {
         linearLayout.setVisibility(View.GONE);
         openFragment(ChangePlace.newInstance(myPlaces,myPlace));
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        close.setVisibility(View.VISIBLE);
+        personalInformation.setVisibility(View.GONE);
+        openFragment(PersonalInformation.newInstance());
 
     }
 }

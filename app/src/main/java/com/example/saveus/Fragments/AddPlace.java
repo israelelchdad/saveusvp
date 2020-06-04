@@ -157,7 +157,8 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
                initAdress();
                 if (mListener != null) {
                     mListener.setMyPlace(myPlace);
-                    int b=5;
+                    mListener.goToPlaceAndMap();
+
                 }
                 break;
             case R.id.f_add_place_clear:
@@ -329,5 +330,6 @@ public class AddPlace extends Fragment implements View.OnClickListener, DatePick
     public interface updatePlace {
 
         void setMyPlace(Place myPlace);
+        void goToPlaceAndMap();
     }
 }

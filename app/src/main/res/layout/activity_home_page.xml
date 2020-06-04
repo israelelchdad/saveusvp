@@ -24,10 +24,20 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_weight="25"
+                android:id="@+id/ActivityHome_Personal_Information"
                 android:layout_height="wrap_content"
                 android:paddingTop="17dp"
                 android:paddingBottom="18dp"
                 android:src="@drawable/logovector"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/Ac_home_close_img"
+                android:src="@drawable/ic_close_black_24dp"
+              />
 
             <View
                 android:layout_width="0dp"

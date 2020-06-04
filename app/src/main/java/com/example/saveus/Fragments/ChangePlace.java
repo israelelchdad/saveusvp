@@ -31,14 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ChangePlace.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ChangePlace#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ChangePlace extends Fragment implements View.OnClickListener, DatePickerDialog.OnDateSetListener{
     private Place myPlace;
     private EditText editText;
@@ -55,6 +48,8 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
     private static String KeyMPLACE ="MYPLACE";
     public ArrayList<Place> places = new ArrayList<>();
     private int position;
+    private AddPlace.updatePlace myListener ;
+
     private Place p;
     private int startHour;
     private int startMinute;
@@ -143,6 +138,12 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
             mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+        if (context instanceof AddPlace.updatePlace) {
+            myListener = (AddPlace.updatePlace) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -315,35 +316,14 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
 
     private void setNewPlaceToPlaces() {
         removePlaceOld();
-        places.add(addplaceToMyPlacess(myPlace),myPlace);
 
-
-        if(mListener !=null){
-            mListener.addAndChangeMyPlacesInSharedPrefs(places);
+        if(myListener !=null){
+            myListener.setMyPlace(myPlace);
+            myListener.goToPlaceAndMap();
         }
 
     }
-    private int addplaceToMyPlacess(Place mPlace) {
-        for (int i = 0; i <= places.size(); i++) {
-            if( i == places.size()){
 
-                return i;
-            }
-            if (mPlace.getYear() > places.get(i).getYear()
-                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() > places.get(i).getMounth()
-                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() == places.get(i).getMounth() && mPlace.getDay() > places.get(i).getDay()
-                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() ==places.get(i).getMounth() && mPlace.getDay() == places.get(i).getDay() && mPlace.getHour() > places.get(i).getHour()
-                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() == places.get(i).getMounth() && mPlace.getDay() == places.get(i).getDay() && mPlace.getHour() == places.get(i).getHour() && mPlace.getMinute() > places.get(i).getMinute()
-                    || mPlace.getYear() == places.get(i).getYear() && mPlace.getMounth() == places.get(i).getMounth() && mPlace.getDay() == places.get(i).getDay() && mPlace.getHour() == places.get(i).getHour() && mPlace.getMinute() == places.get(i).getMinute() && mPlace.getSecends() > places.get(i).getSecends())
-            {
-
-                return i;
-
-            }
-
-        }
-        return  0;
-    }
 
 
 
@@ -356,9 +336,7 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
         allTime.setText("00:00:00");
         removePlaceOld();
 
-        if(mListener !=null){
-            mListener.addAndChangeMyPlacesInSharedPrefs(places);
-        }
+
 
     }
     private void removePlaceOld() {
@@ -371,6 +349,9 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
 
         }
         places.remove(indexOfPlaceOld);
+        if(mListener !=null){
+            mListener.addAndChangeMyPlacesInSharedPrefs(places);
+        }
     }
 
 
@@ -379,5 +360,7 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
         void addAndChangeMyPlacesInSharedPrefs(ArrayList<Place> myPlaces);
+
+
     }
 }

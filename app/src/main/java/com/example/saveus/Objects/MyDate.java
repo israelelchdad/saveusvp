@@ -8,12 +8,11 @@ public class MyDate {
     private int day;
     private ArrayList<Place> places;
     private String dayOfDate;
+    private boolean isOpen;
+
 
     public int getYear() {
         return year;
-    }
-    public MyDate(){
-
     }
 
     public void setYear(int year) {
@@ -52,11 +51,26 @@ public class MyDate {
         this.dayOfDate = dayOfDate;
     }
 
-    public MyDate(int year, int mounth, int day, ArrayList<Place> places, String dayOfDate) {
+    public boolean isOpen() {
+        return isOpen;
+    }
+
+    public void setOpen(boolean open) {
+        isOpen = open;
+    }
+
+    public MyDate(int year, int mounth, int day, ArrayList<Place> places, String dayOfDate, boolean isOpen) {
         this.year = year;
         this.mounth = mounth;
         this.day = day;
         this.places = places;
         this.dayOfDate = dayOfDate;
+        this.isOpen = isOpen;
     }
+
+    public MyDate(){
+
+    }
+
+
 }

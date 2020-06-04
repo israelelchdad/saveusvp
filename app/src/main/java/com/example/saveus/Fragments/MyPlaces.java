@@ -40,7 +40,6 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
     private  Calendar srart;
     private  Calendar end;
     private AdapterDaets myAdapter;
-    private boolean isList = true;
     private boolean first = true;
 
     private OnFragmentInteractionListener mListener;
@@ -186,12 +185,13 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
 
     @Override
     public void onButtonClicMoveDate(View viewItemOneData,MyDate myDate) {
-        if(isList){
+        if(!myDate.isOpen()){
+            myDate.setOpen(true);
             initRecyrclerViewOfOneOneDate(viewItemOneData,myDate.getPlaces());
 
         }
         else {
-            isList =true;
+            myDate.setOpen(false);
             RecyclerView recyclerView = viewItemOneData.findViewById(R.id.myplaces_RV_of_oneDate);
             recyclerView.setVisibility(View.GONE);
         }
@@ -201,7 +201,7 @@ public class MyPlaces extends Fragment implements AdapterRecyclerViewMyPlaces.It
 
     }
     private void initRecyrclerViewOfOneOneDate(View v,ArrayList<Place>myPlaces) {
-        isList = false;
+
         RecyclerView recyclerView = v.findViewById(R.id.myplaces_RV_of_oneDate);
         recyclerView.setVisibility(View.VISIBLE);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
