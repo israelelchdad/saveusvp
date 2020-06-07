@@ -5,11 +5,17 @@
     android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".Fragments.PersonalInformation">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="#40000000"
+        android:layout_weight="1"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="0dp"
         android:layout_weight="520">
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -32,6 +38,7 @@
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
+                android:id="@+id/profile_edit"
                 android:src="@drawable/pen"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="25dp"
@@ -47,24 +54,415 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="horizontal"
-            android:layout_height="wrap_content">
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:layout_height="match_parent">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="18dp"
                 android:textSize="14sp"
                 android:textColor="#b0b0b0"
                 android:text="שם משתמש"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#b0b0b0"
-                android:text="מספר טלפון"/>
+
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#b0b0b0"
+                    android:text="מספר טלפון"/>
+
+            </LinearLayout>
+
 
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#051549"
+                    android:text="ישראל כהן"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#051549"
+                    android:text="050-8522322"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="16"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:textSize="14sp"
+                    android:textColor="#b0b0b0"
+                    android:text="תאריך לידה"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#b0b0b0"
+                    android:text="דואל"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#051549"
+                    android:text="19/12/88"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#051549"
+                    android:text="israel@gmail.com"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="20"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:textSize="14sp"
+                    android:textColor="#b0b0b0"
+                    android:text="שפה"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#b0b0b0"
+                    android:text="קבלת התראות לנייד"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:textColor="#051549"
+                    android:text="עברית"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:textColor="#051549"
+                    android:text="כן"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="30"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="80">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:background="@drawable/rectangeleofprofile"
+                android:layout_marginEnd="8dp"
+                android:gravity="center_horizontal"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="21dp"
+                    android:layout_height="25dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/aplication"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="start"
+                    android:textSize="15sp"
+                    android:textColor="#051549"
+                    android:text="איך עובדת האפליקציה?"/>
+
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="@drawable/rectangeleofprofile"
+                android:layout_marginStart="8dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="21dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/used"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:textStyle="bold"
+                    android:layout_marginEnd="14dp"
+                    android:layout_gravity="center_horizontal"
+                    android:textSize="15sp"
+                    android:textColor="#051549"
+                    android:text="תנאי שימוש"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="80">
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="@drawable/rectangeleofprofile"
+                android:layout_marginEnd="8dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/denger"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="15dp"
+                    android:textColor="#051549"
+                    android:text="דיווח על תקלה"/>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:background="@drawable/rectangeleofprofile"
+                android:layout_marginStart="8dp"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="27dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/shere"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="12dp"
+                    android:textColor="#051549"
+                    android:text="שתף עם חברים"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="12"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="#ee6777"
+            android:orientation="horizontal"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_weight="49">
+            <View
+                android:layout_width="22dp"
+                android:layout_height="match_parent" />
+            <ImageView
+                android:layout_width="19dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center"
+                android:src="@drawable/exit"/>
+            <View
+                android:layout_width="35dp"
+                android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:text="ייצוא המקומות בהם ביקרתי"
+            />
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="24"/>
+
 
     </LinearLayout>
 

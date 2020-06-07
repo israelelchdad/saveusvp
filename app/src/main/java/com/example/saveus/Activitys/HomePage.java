@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.saveus.Fragments.AddPlace;
+import com.example.saveus.Fragments.EditProfile;
 import com.example.saveus.Fragments.HomeStart;
 import com.example.saveus.Fragments.MyPlaces;
 import com.example.saveus.Fragments.PersonalInformation;
@@ -30,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener ,
-        ChangePlace.OnFragmentInteractionListener, View.OnClickListener,PersonalInformation.OnFragmentInteractionListener {
+        ChangePlace.OnFragmentInteractionListener, View.OnClickListener,PersonalInformation.OnFragmentInteractionListener,EditProfile.OnFragmentInteractionListener {
     BottomNavigationView mybottomNavigation;
     HomeStart homeStart ;
     LinearLayout linearLayout;
@@ -176,6 +177,9 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+
+
     @Override
     public void goToPlaceAndMap() {
 
@@ -203,6 +207,13 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
         close.setVisibility(View.VISIBLE);
         personalInformation.setVisibility(View.GONE);
         openFragment(PersonalInformation.newInstance());
+
+    }
+    @Override
+    public void moveToEditProfile() {
+        linearLayout.setVisibility(View.GONE);
+        openFragment(EditProfile.newInstance());
+
 
     }
 }

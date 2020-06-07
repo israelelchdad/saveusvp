@@ -9,23 +9,24 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.example.saveus.R;
 
 
-public class PersonalInformation extends Fragment implements View.OnClickListener {
-    private ImageView editProfile;
+public class EditProfile extends Fragment {
+
+
+
 
     private OnFragmentInteractionListener mListener;
 
-    public PersonalInformation() {
+    public EditProfile() {
 
     }
 
 
-    public static PersonalInformation newInstance() {
-        PersonalInformation fragment = new PersonalInformation();
+    public static EditProfile newInstance() {
+        EditProfile fragment = new EditProfile();
         Bundle args = new Bundle();
 
         fragment.setArguments(args);
@@ -43,13 +44,8 @@ public class PersonalInformation extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-         View view= inflater.inflate(R.layout.fragment_personal_information, container, false);
-         editProfile = view.findViewById(R.id.profile_edit);
-         editProfile.setOnClickListener(this);
 
-
-         return view;
+        return inflater.inflate(R.layout.fragment_edit_profile, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -76,16 +72,9 @@ public class PersonalInformation extends Fragment implements View.OnClickListene
         mListener = null;
     }
 
-    @Override
-    public void onClick(View v) {
-        mListener.moveToEditProfile();
-
-    }
-
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-        void moveToEditProfile();
     }
 }
