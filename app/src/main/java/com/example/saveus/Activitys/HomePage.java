@@ -90,16 +90,19 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
             switch (menuItem.getItemId()) {
                 case R.id.am_main:
                     linearLayout.setVisibility(View.VISIBLE);
-                   openFragment(HomeStart.newInstance(myPlaces));
+                    setVisibleAndGonOfProfile();
+                    openFragment(HomeStart.newInstance(myPlaces));
                    break;
                 case R.id.am_myplaces:
                     linearLayout.setVisibility(View.VISIBLE);
-                    PlacesAndMap fragment = PlacesAndMap.newInstance(myPlaces);
 
+                    setVisibleAndGonOfProfile();
+                    PlacesAndMap fragment = PlacesAndMap.newInstance(myPlaces);
                     openFragment(fragment);
 
                     break;
                 case R.id.am_notifacation:
+//                    setVisibleAndGonOfProfile();
 //                    openFragment(onBoarding3);
 
 
@@ -108,6 +111,12 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
         }
 
     };
+
+    private void setVisibleAndGonOfProfile() {
+        close.setVisibility(View.GONE);
+        personalInformation.setVisibility(View.VISIBLE);
+    }
+
     public void openFragment(Fragment myfragment){
         getSupportFragmentManager().beginTransaction().replace(R.id.homePage_fremlayot,myfragment)
                 .addToBackStack(null)
@@ -182,6 +191,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
 
     @Override
     public void goToPlaceAndMap() {
+        setVisibleAndGonOfProfile();
 
         openFragment(PlacesAndMap.newInstance(myPlaces));
 
@@ -211,7 +221,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     }
     @Override
     public void moveToEditProfile() {
-        linearLayout.setVisibility(View.GONE);
+       linearLayout.setVisibility(View.GONE);
         openFragment(EditProfile.newInstance());
 
 
