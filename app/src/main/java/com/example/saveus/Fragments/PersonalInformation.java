@@ -1,21 +1,36 @@
 package com.example.saveus.Fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.example.saveus.Activitys.LoginActivity;
+import com.example.saveus.Objects.Place;
+import com.example.saveus.Objects.Profil;
 import com.example.saveus.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 
 
 public class PersonalInformation extends Fragment implements View.OnClickListener {
     private ImageView editProfile;
+    private Profil myProfile;
+    private TextView name;
+    private TextView email;
+    private TextView phone;
 
     private OnFragmentInteractionListener mListener;
 
@@ -45,11 +60,33 @@ public class PersonalInformation extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View view= inflater.inflate(R.layout.fragment_personal_information, container, false);
+         name = view.findViewById(R.id.profile_name);
+         email = view.findViewById(R.id.profile_email);
+         phone = view.findViewById(R.id.profile_phone);
+         getMyProfile();
          editProfile = view.findViewById(R.id.profile_edit);
          editProfile.setOnClickListener(this);
 
 
          return view;
+    }
+
+    private void getMyProfile() {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        Gson gson = new Gson();
+        String json = sharedPrefs.getString(LoginActivity.KEYOPROFILE, null);
+        Type type = new TypeToken<Profil>() {}.getType();
+        myProfile = gson.fromJson(json,type);
+        if(myProfile!=null){
+            setMyprofil();
+        }
+
+    }
+
+    private void setMyprofil() {
+        name.setText(myProfile.getName());
+        email.setText(myProfile.getName());
+        phone.setText(myProfile.getPhone());
     }
 
     // TODO: Rename method, update argument and hook method into UI event

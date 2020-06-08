@@ -17,6 +17,7 @@ import com.example.saveus.Fragments.AddPlace;
 import com.example.saveus.Fragments.EditProfile;
 import com.example.saveus.Fragments.HomeStart;
 import com.example.saveus.Fragments.MyPlaces;
+import com.example.saveus.Fragments.Notifications;
 import com.example.saveus.Fragments.PersonalInformation;
 import com.example.saveus.Fragments.PlacesAndMap;
 import com.example.saveus.Fragments.ChangePlace;
@@ -31,7 +32,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener ,
-        ChangePlace.OnFragmentInteractionListener, View.OnClickListener,PersonalInformation.OnFragmentInteractionListener,EditProfile.OnFragmentInteractionListener {
+        ChangePlace.OnFragmentInteractionListener, View.OnClickListener,PersonalInformation.OnFragmentInteractionListener,EditProfile.OnFragmentInteractionListener ,Notifications.OnFragmentInteractionListener{
     BottomNavigationView mybottomNavigation;
     HomeStart homeStart ;
     LinearLayout linearLayout;
@@ -102,8 +103,8 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
 
                     break;
                 case R.id.am_notifacation:
-//                    setVisibleAndGonOfProfile();
-//                    openFragment(onBoarding3);
+                    setVisibleAndGonOfProfile();
+                    openFragment(Notifications.newInstance());
 
 
 
@@ -174,9 +175,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         SharedPreferences.Editor editor = sharedPrefs.edit();
         Gson gson = new Gson();
-
         String json = gson.toJson(myPlaces);
-
         editor.putString(KEYOFPLACES, json);
         editor.commit();
 

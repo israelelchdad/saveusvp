@@ -104,6 +104,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:textSize="17sp"
+        android:id="@+id/A_LOGIN_name"
         android:paddingStart="7dp"
 
         android:outlineSpotShadowColor="#fafbfc"
@@ -116,6 +117,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:textSize="17sp"
+        android:id="@+id/A_LOGIN_email"
         android:textColorHint="#b0b0b0"
         android:paddingStart="7dp"
         android:outlineSpotShadowColor="#fafbfc"
@@ -127,6 +129,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:textSize="17sp"
+        android:id="@+id/A_LOGIN_phone"
         android:paddingStart="7dp"
         android:outlineSpotShadowColor="#fafbfc"
         android:textColorHint="#b0b0b0"
@@ -234,6 +237,7 @@
             android:layout_weight="133"
             android:textSize="17sp"
             android:text="@string/registration"
+            android:id="@+id/Activity_login_registar"
             android:textColor="#ffffff"
             android:background="@drawable/circle_flogin_butten_registration"
             android:layout_height="match_parent"/>
