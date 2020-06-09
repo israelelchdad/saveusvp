@@ -52,12 +52,7 @@ public class OnBoarding1 extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_on_boarding1, container, false);
-        moveToOnboarding1 = view.findViewById(R.id.f_boarding1_button);
-        moveToOnboarding1.setOnClickListener(this);
-        moveToOnboarding2= view.findViewById(R.id.f_boarding2_button);
-        moveToOnboarding2.setOnClickListener(this);
-        moveToOnboarding3= view.findViewById(R.id.f_boarding3_button);
-        moveToOnboarding3.setOnClickListener(this);
+
         return view;
     }
 
@@ -82,7 +77,7 @@ public class OnBoarding1 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        mListener.chengCorentListFragment(v);
+
 
 
     }
@@ -90,6 +85,6 @@ public class OnBoarding1 extends Fragment implements View.OnClickListener {
 
     public interface OnFragmentInteractionListener {
 
-        void  chengCorentListFragment(View view);
+
     }
 }

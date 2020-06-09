@@ -15,9 +15,7 @@ import com.example.saveus.R;
 
 
 public class OnBoarding3 extends Fragment implements View.OnClickListener {
-    Button moveToOnboarding1;
-    Button moveToOnboarding2;
-    Button moveToOnboarding3;
+   
 
 
 
@@ -49,12 +47,7 @@ public class OnBoarding3 extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
 
         View view =inflater.inflate(R.layout.fragment_on_boarding3, container, false);
-        moveToOnboarding1 = view.findViewById(R.id.f_boarding1_button);
-        moveToOnboarding1.setOnClickListener(this);
-        moveToOnboarding2= view.findViewById(R.id.f_boarding2_button);
-        moveToOnboarding2.setOnClickListener(this);
-        moveToOnboarding3= view.findViewById(R.id.f_boarding3_button);
-        moveToOnboarding3.setOnClickListener(this);
+
         return view;
     }
 
@@ -79,13 +72,11 @@ public class OnBoarding3 extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        mListener.chengCorentListFragment(v);
+
     }
 
 
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
 
-        void chengCorentListFragment(View v);
     }
 }

@@ -16,6 +16,7 @@ import com.example.saveus.Fragments.OnBoarding1;
 import com.example.saveus.Fragments.OnBoarding2;
 import com.example.saveus.Fragments.OnBoarding3;
 import com.example.saveus.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,9 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
         myviewpajer = findViewById(R.id.aw_vp);
         myadapterviewpager = new AdapterViewPagerOnB(getSupportFragmentManager(),listFragmentsOnBoarding());
         myviewpajer.setAdapter(myadapterviewpager);
+        TabLayout tabLayout = findViewById(R.id.tab_layout_Welcom);
+        tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
+        tabLayout.setupWithViewPager(myviewpajer, true);
         setOnTuchOfViewPager();
 
 
@@ -52,29 +56,39 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
 
     @SuppressLint("ClickableViewAccessibility")
     private void setOnTuchOfViewPager() {
-        myviewpajer.setOnTouchListener(new View.OnTouchListener() {
-            int downX, upX;
+        myviewpajer.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+            private boolean isMoveToNextActivity;
+
+
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onPageScrolled(int position, float positionOffset, int i1) {
 
-                if(myadapterviewpager.getCount() - 1 == myviewpajer.getCurrentItem()){
-                    if (event.getAction() == MotionEvent.ACTION_UP) {
-                        upX = (int) event.getX();
+                if (position == 2 ) {
+                    if (isMoveToNextActivity) {
+                        moveToActivty();
 
-                        if (downX - upX > -100) {
-                            moveToActivty();
-
-
-
-                        }
                     }
-                    return true;
+                    isMoveToNextActivity = true;
 
+                } else {
+                    isMoveToNextActivity = false;;
                 }
 
-                return false;
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
             }
         });
+
+
     }
 
     private void moveToActivty() {
@@ -91,18 +105,6 @@ public class Welcome extends AppCompatActivity implements OnBoarding1.OnFragment
 
         return myListFragmentsOnBoarding;
     }
-    @Override
-    public void chengCorentListFragment(View view) {
-        switch(view.getId()) {
-            case R.id.f_boarding1_button:
-               myviewpajer.setCurrentItem(0);
-                break;
-            case R.id.f_boarding2_button:
-                myviewpajer.setCurrentItem(1);
-                break;
-            case R.id.f_boarding3_button:
-                myviewpajer.setCurrentItem(2);
-                break;
-        }
-    }
+
+
 }

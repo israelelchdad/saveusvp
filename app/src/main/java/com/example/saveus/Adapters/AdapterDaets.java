@@ -126,28 +126,30 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
 
 
             }
-//            if(myDate.getYear()==year&&myDate.getMounth()==mounth&&myDate.getDay()==day-1){
-//                date.setVisibility(View.GONE);
-//                imageView.setVisibility(View.GONE);
-//                dateTody.setVisibility(View.VISIBLE);
-//                dateTody.setText(AddPlace.setTime(myDate.getDay())+"/"+AddPlace.setTime(myDate.getMounth())+"/"+AddPlace.setTime(myDate.getYear()));
-//                todayOryYesterdey.setVisibility(View.VISIBLE);
-//                todayOryYesterdey.setText("אתמול");
-//                if (buttonClickListener != null){
-//                    buttonClickListener.onButtonClicMoveDate(viewItemOneDate,myDate);
-//                }
+           else{
+               if(myDate.getYear()==year&&myDate.getMounth()==mounth&&myDate.getDay()==day-1){
+                    date.setVisibility(View.GONE);
+                    imageView.setVisibility(View.GONE);
+                    dateTody.setVisibility(View.VISIBLE);
+                    dateTody.setText(AddPlace.setTime(myDate.getDay())+"/"+AddPlace.setTime(myDate.getMounth())+"/"+AddPlace.setTime(myDate.getYear()));
+                    todayOryYesterdey.setVisibility(View.VISIBLE);
+                    todayOryYesterdey.setText("אתמול");
+//                    if (buttonClickListener != null){
+//                        buttonClickListener.onButtonClicMoveDate(viewItemOneDate,myDate);
+//                    }
 
 
 
 
-//            }
-            else {
-                date.setVisibility(View.VISIBLE);
-                imageView.setVisibility(View.VISIBLE);
-                dateTody.setVisibility(View.GONE);
-                todayOryYesterdey.setVisibility(View.GONE);
-                date.setText(AddPlace.setTime(myDate.getDay())+"/"+AddPlace.setTime(myDate.getMounth())+"/"+AddPlace.setTime(myDate.getYear()));
+                }
+                else {
+                    date.setVisibility(View.VISIBLE);
+                    imageView.setVisibility(View.VISIBLE);
+                    dateTody.setVisibility(View.GONE);
+                    todayOryYesterdey.setVisibility(View.GONE);
+                    date.setText(AddPlace.setTime(myDate.getDay())+"/"+AddPlace.setTime(myDate.getMounth())+"/"+AddPlace.setTime(myDate.getYear()));
 
+                }
             }
         }
 

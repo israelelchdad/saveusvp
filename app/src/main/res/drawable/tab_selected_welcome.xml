@@ -1,0 +1,4 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/tab_welcome_select" android:state_selected="true" />
+    <item android:drawable="@drawable/tab_welcom_noselect" android:state_selected="false" />
+</selector>
