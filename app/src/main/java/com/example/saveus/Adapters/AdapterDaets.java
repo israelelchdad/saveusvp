@@ -117,6 +117,7 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
                 dateTody.setVisibility(View.VISIBLE);
                 dateTody.setText(AddPlace.setTime(myDate.getDay())+"/"+AddPlace.setTime(myDate.getMounth())+"/"+AddPlace.setTime(myDate.getYear()));
                 todayOryYesterdey.setVisibility(View.VISIBLE);
+
                 todayOryYesterdey.setText("היום");
 //                if (buttonClickListener != null){
 //                    buttonClickListener.onButtonClicMoveDate(viewItemOneDate,myDate);
@@ -133,6 +134,7 @@ public class AdapterDaets extends RecyclerView.Adapter<AdapterDaets.ViewHolder> 
                     dateTody.setVisibility(View.VISIBLE);
                     dateTody.setText(AddPlace.setTime(myDate.getDay())+"/"+AddPlace.setTime(myDate.getMounth())+"/"+AddPlace.setTime(myDate.getYear()));
                     todayOryYesterdey.setVisibility(View.VISIBLE);
+
                     todayOryYesterdey.setText("אתמול");
 //                    if (buttonClickListener != null){
 //                        buttonClickListener.onButtonClicMoveDate(viewItemOneDate,myDate);

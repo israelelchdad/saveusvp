@@ -30,7 +30,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="שמירה"
+                android:text="@string/f_chenge_place_save"
                 android:id="@+id/f_add_place_save"
                 android:textColor="#00b2ab"
                 android:textSize="18sp"
@@ -53,7 +53,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="הוספת מיקום"
+            android:text="@string/f_a_p_addplace"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="@color/text_color_addplace"/>
@@ -86,7 +86,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="כתובת"
+                android:hint="@string/f_a_p_Address"
                 android:id="@+id/f_add_adress"
                 android:textStyle="bold"
                 android:textColorHint="@color/hintTextColor"
@@ -125,7 +125,7 @@
                 android:id="@+id/f_add_date"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="הוספת תאריך"
+                android:text="@string/f_chenge_adddate"
                 android:textStyle="bold"
                 android:textColor="@color/text_color_addplace"
                 />
@@ -188,11 +188,11 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/f_add_starttime"
                             android:textStyle="bold"
+                            android:id="@+id/f_add_starttime"
                             android:textSize="14sp"
                             android:textColor="@color/hintTextColor"
-                            android:text="התחלה"/>
+                            android:text="@string/f_cheng_start"/>
 
                     </LinearLayout>
 
@@ -225,10 +225,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
+
                             android:id="@+id/f_add_time_end"
                             android:textSize="14sp"
+                            android:text="@string/f_chenge_end"
                             android:textColor="@color/hintTextColor"
-                            android:text="סיום"/>
+                            />
 
 
                     </LinearLayout>
@@ -281,7 +283,8 @@
                     android:textStyle="bold"
                     android:textSize="14sp"
                     android:textColor="@color/hintTextColor"
-                    android:text="סך הכל"/>
+                    android:text="@string/f_chenge_all"
+                   />
             </LinearLayout>
         </LinearLayout>
 
@@ -324,7 +327,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="מחק דיווח"
+                android:text="@string/f_chenge_clear"
                 android:textColor="#ee6777"
                 android:textStyle="bold"
                 android:textSize="18sp"/>

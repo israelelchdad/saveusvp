@@ -42,6 +42,37 @@
     <string name="f_placemap_onmap">on map</string>
     <string name="f_placemap_myplaces">my places</string>
     <string name="add_place">add \n place</string>
+    <string name="f_placemap_yesteday">yesterday</string>
+    <string name="f_placemap_today">todey</string>
+    <string name="f_chenge_place_save">save</string>
+    <string name="f_chenge_editplace">edit place</string>
+    <string name="f_chenge_adddate">add date</string>
+    <string name="f_cheng_start">start</string>
+    <string name="f_chenge_end">end</string>
+    <string name="f_chenge_all">all</string>
+    <string name="f_chenge_clear">clear place</string>
+    <string name="f_notif_mynotif">my notifacations</string>
+    <string name="f_n_numberdie">number die</string>
+    <string name="f_n_numbrecoverers">number recoverers</string>
+    <string name="f_n_Numberpatients">Number patients</string>
+    <string name="f_n_Therearenoupdatesso">There are no updates so far for you</string>
+    <string name="f_a_p_addplace">Add place</string>
+    <string name="f_a_p_Address">Adreess</string>
+    <string name="f_pro_PersonalInformation">Personal Information</string>
+    <string name="f_pro_username">User neme</string>
+    <string name="f_pro_phone">Phone</string>
+    <string name="f_pro_datebirth">Date birth</string>
+    <string name="f_pro_email">email</string>
+    <string name="f_pro_language">Language</string>
+    <string name="f_pro_Getmobilealerts">Get mobile alerts</string>
+    <string name="f_pro_Howtheappworks">How the app works</string>
+    <string name="f_pro_TermsofUse">Terms of Use</string>
+    <string name="f_pro_TheplacesIvisitedwillcoout">The places I visited will come out</string>
+    <string name="f_pro_Reportamalfunction">Report a malfunction</string>
+    <string name="f_pro_Sharewithfriends">Share with friends</string>
+
+
+
 
 
 </resources>

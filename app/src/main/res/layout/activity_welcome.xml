@@ -21,15 +21,22 @@
         android:layout_weight="45"
 
         >
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout_Welcom"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
             android:layout_height="match_parent"
-            android:layout_marginStart="160dp"
-            android:layout_marginEnd="160dp"
             app:tabBackground="@drawable/tab_selected_welcome"
             />
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 

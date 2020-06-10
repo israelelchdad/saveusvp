@@ -14,7 +14,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="ההתראות שלי"
+            android:text="@string/f_notif_mynotif"
             android:textSize="22sp"
             android:textColor="#ffffff"/>
 
@@ -50,7 +50,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="מספר חולים"
+                    android:text="@string/f_n_Numberpatients"
                     android:gravity="center"
                     android:layout_marginTop="6dp"
                     android:textColor="#737684"
@@ -77,7 +77,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="מספר מחלימים"
+                    android:text="@string/f_n_numbrecoverers"
                     android:gravity="center"
                     android:layout_marginTop="6dp"
                     android:textColor="#737684"
@@ -102,7 +102,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="מספר מתים"
+                    android:text="@string/f_n_numberdie"
                     android:gravity="center"
                     android:layout_marginTop="6dp"
                     android:textColor="#737684"
@@ -152,7 +152,7 @@
             android:layout_marginTop="9dp"
             android:textStyle="bold"
             android:layout_marginStart="22dp"
-            android:text="אין עדכונים עד כה עבורך"
+            android:text="@string/f_n_Therearenoupdatesso"
             android:textSize="16sp"
             android:textColor="#ee6676"/>
 

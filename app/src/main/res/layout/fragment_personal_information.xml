@@ -34,7 +34,7 @@
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="#051549"
-                android:text="פרטים אישיים"/>
+                android:text="@string/f_pro_PersonalInformation"/>
             <ImageView
                 android:layout_width="15dp"
                 android:layout_height="15dp"
@@ -68,7 +68,7 @@
                 android:layout_marginStart="18dp"
                 android:textSize="14sp"
                 android:textColor="#b0b0b0"
-                android:text="שם משתמש"/>
+                android:text="@string/f_pro_username"/>
 
         </LinearLayout>
             <LinearLayout
@@ -82,7 +82,7 @@
                     android:textSize="14sp"
                     android:layout_marginStart="10dp"
                     android:textColor="#b0b0b0"
-                    android:text="מספר טלפון"/>
+                    android:text="@string/f_pro_phone"/>
 
             </LinearLayout>
 
@@ -150,7 +150,7 @@
                     android:layout_marginStart="18dp"
                     android:textSize="14sp"
                     android:textColor="#b0b0b0"
-                    android:text="תאריך לידה"/>
+                    android:text="@string/f_pro_datebirth"/>
 
             </LinearLayout>
             <LinearLayout
@@ -164,7 +164,7 @@
                     android:textSize="14sp"
                     android:layout_marginStart="10dp"
                     android:textColor="#b0b0b0"
-                    android:text="דואל"/>
+                    android:text="@string/f_pro_email"/>
 
             </LinearLayout>
 
@@ -231,7 +231,7 @@
                     android:layout_marginStart="18dp"
                     android:textSize="14sp"
                     android:textColor="#b0b0b0"
-                    android:text="שפה"/>
+                    android:text="@string/f_pro_language"/>
 
             </LinearLayout>
             <LinearLayout
@@ -245,7 +245,7 @@
                     android:textSize="14sp"
                     android:layout_marginStart="10dp"
                     android:textColor="#b0b0b0"
-                    android:text="קבלת התראות לנייד"/>
+                    android:text="@string/f_pro_Getmobilealerts"/>
 
             </LinearLayout>
 
@@ -324,7 +324,7 @@
                     android:layout_gravity="start"
                     android:textSize="15sp"
                     android:textColor="#051549"
-                    android:text="איך עובדת האפליקציה?"/>
+                    android:text="@string/f_pro_Howtheappworks"/>
 
 
 
@@ -354,7 +354,7 @@
                     android:layout_gravity="center_horizontal"
                     android:textSize="15sp"
                     android:textColor="#051549"
-                    android:text="תנאי שימוש"/>
+                    android:text="@string/f_pro_TermsofUse"/>
 
 
             </LinearLayout>
@@ -393,7 +393,7 @@
                     android:textSize="15sp"
                     android:layout_marginEnd="15dp"
                     android:textColor="#051549"
-                    android:text="דיווח על תקלה"/>
+                    android:text="@string/f_pro_Reportamalfunction"/>
 
 
 
@@ -420,7 +420,7 @@
                     android:textSize="15sp"
                     android:layout_marginEnd="12dp"
                     android:textColor="#051549"
-                    android:text="שתף עם חברים"/>
+                    android:text="@string/f_pro_Sharewithfriends"/>
 
 
             </LinearLayout>
@@ -456,7 +456,7 @@
                 android:textSize="18sp"
                 android:layout_gravity="center"
                 android:textColor="#ffffff"
-                android:text="ייצוא המקומות בהם ביקרתי"
+                android:text="@string/f_pro_TheplacesIvisitedwillcoout"
             />
 
 

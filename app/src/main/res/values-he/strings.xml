@@ -38,5 +38,36 @@
     <string name="f_start_stop">עצור</string>
     <string name="f_placemap_onmap">על מפה</string>
     <string name="f_placemap_myplaces">המקומות שלי</string>
+    <string name="f_placemap_yesteday">אתמול</string>
+    <string name="f_placemap_today">היום</string>
+    <string name="f_chenge_place_save">שמירה</string>
+    <string name="f_chenge_editplace">עריכת מיקום</string>
+    <string name="f_chenge_adddate">הוספת תאריך</string>
+    <string name="f_cheng_start">התחלה</string>
+    <string name="f_chenge_end">סיום</string>
+    <string name="f_chenge_all">סך הכל</string>
+    <string name="f_chenge_clear">מחק דיווח</string>
+    <string name="f_notif_mynotif">ההתראות שלי</string>
+    <string name="f_n_numberdie">מספר מתים</string>
+    <string name="f_n_numbrecoverers">מספר מחלימים</string>
+    <string name="f_n_Numberpatients">מספר חולים</string>
+    <string name="f_n_Therearenoupdatesso">אין עדכונים עד כה עבורך</string>
+    <string name="f_a_p_addplace">הוספת מיקום</string>
+    <string name="f_a_p_Address">כתובת</string>
+    <string name="f_pro_PersonalInformation">פרטים אישיים</string>
+    <string name="f_pro_username">שם משתמש</string>
+    <string name="f_pro_phone">מספר טלפון</string>
+    <string name="f_pro_datebirth">תאריך לידה</string>
+    <string name="f_pro_email">דואל</string>
+    <string name="f_pro_language">שפה</string>
+    <string name="f_pro_Getmobilealerts">קבלת התראות לנייד</string>
+    <string name="f_pro_Howtheappworks">איך עובדת האפליקציה?</string>
+    <string name="f_pro_TermsofUse">תנאי שימוש</string>
+    <string name="f_pro_TheplacesIvisitedwillcoout">ייצוא המקומות בהם ביקרתי</string>
+    <string name="f_pro_Reportamalfunction">דיווח על תקלה</string>
+    <string name="f_pro_Sharewithfriends">שתף עם חברים</string>
+
+
+
 
 </resources>
