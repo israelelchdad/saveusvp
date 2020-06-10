@@ -34,61 +34,20 @@
             android:textSize="40sp"
             android:layout_height="0dp"
             android:layout_weight="63"
-
-           android:text="@string/f_b1_security_text1" />
-
-       <View
+          android:text="@string/f_b1_security_text1" />
+        <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="35"/>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:layout_weight="51"
-                >
-                <TextView
-                    android:id="@+id/fbowerd1_avoid"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    android:layout_alignParentStart="true"
-                    android:text="@string/f_b1_m_text2"
-                    android:layout_marginEnd="2dp"
-                    android:textColor="#454e6c"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:textColor="#454e6c"
-                    android:textStyle="bold"
-                    android:maxLines="1"
-                    android:layout_toEndOf="@+id/fbowerd1_avoid"
-                    android:textSize="16sp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/f_b1_she_text3" />
-
-            </RelativeLayout>
-
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="24"
-            android:layout_gravity="center"
-            android:text="@string/f_b1_now_text4"
+            android:layout_weight="123"
+            android:text="@string/onboarding1_text"
+            android:gravity="center"
             android:textSize="16sp"
             android:textColor="#454e6c"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="24"
-            android:textStyle="bold"
-            android:layout_gravity="center"
-            android:text="@string/f_b1_dont_text5"
-            android:textSize="16sp"
-            android:textColor="#454e6c"/>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"

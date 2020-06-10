@@ -70,6 +70,9 @@
     <string name="f_pro_TheplacesIvisitedwillcoout">The places I visited will come out</string>
     <string name="f_pro_Reportamalfunction">Report a malfunction</string>
     <string name="f_pro_Sharewithfriends">Share with friends</string>
+    <string name="onboarding2_text"> <b>Real-time alert</b> You will be accepted in the situation you reported on your current location and has updated information as an infected area</string>
+    <string name="onboarding22_text"> <b>Updated alert</b> Will be accepted when one of the places that you reported, in real time or in retrospect, will be reported as an infected area</string>
+    <string name="onboarding1_text">The corona\'s spread is prevented <b>The goal of us all</b> \n\n You can now actively help \n <b>And without fear of violating your privacy</b></string>
 
 
 

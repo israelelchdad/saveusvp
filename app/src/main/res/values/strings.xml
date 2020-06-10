@@ -72,7 +72,10 @@
     <string name="f_pro_TermsofUse">תנאי שימוש</string>
     <string name="f_pro_TheplacesIvisitedwillcoout">ייצוא המקומות בהם ביקרתי</string>
     <string name="f_pro_Reportamalfunction">דיווח על תקלה</string>
+    <string name="onboarding2_text"> <b>התראה בזמן אמת</b> תתקבל במצב בו דיווחתם על\n מיקומכם הנוכחי ויש עליו מידע מעודכן כאזור נגוע  \n\n </string>
+    <string name="onboarding22_text"> <b>התראה מתעדכנת</b> תתקבל כאשר אחד מהמקומות\n שדיווחתם עליהם, בזמן אמת או בדיעבד, \n ידווח כאזור נגוע  \n\n</string>
     <string name="f_pro_Sharewithfriends">שתף עם חברים</string>
+    <string name="onboarding1_text">מניעת התפשטות הקורונה היא <b>המטרה של כולנו</b> \n\n עכשיו תוכלו לסייע באופן אקטיבי \n <b>ובלי חשש לפגיעה בפרטיותכם</b></string>
 
 
 </resources>
