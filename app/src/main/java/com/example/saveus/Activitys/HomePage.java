@@ -3,6 +3,7 @@ package com.example.saveus.Activitys;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -30,6 +31,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+
+import static android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE;
 
 public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAddPlacenListener,AddPlace.updatePlace, MyPlaces.OnFragmentInteractionListener ,
         ChangePlace.OnFragmentInteractionListener, View.OnClickListener,PersonalInformation.OnFragmentInteractionListener,EditProfile.OnFragmentInteractionListener ,Notifications.OnFragmentInteractionListener{
@@ -59,7 +62,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
 
         mybottomNavigation.setItemIconTintList(null);
         homeStart = new HomeStart();
-        openFragment(HomeStart.newInstance(myPlaces));
+        openFragment(HomeStart.newInstance(myPlaces),"HomeStart");
 
 
         initLisitnerOfNavigation();
@@ -92,19 +95,20 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
                 case R.id.am_main:
                     linearLayout.setVisibility(View.VISIBLE);
                     setVisibleAndGonOfProfile();
-                    openFragment(HomeStart.newInstance(myPlaces));
+                    openFragment(HomeStart.newInstance(myPlaces),"HomeStart");
                    break;
                 case R.id.am_myplaces:
                     linearLayout.setVisibility(View.VISIBLE);
 
                     setVisibleAndGonOfProfile();
                     PlacesAndMap fragment = PlacesAndMap.newInstance(myPlaces);
-                    openFragment(fragment);
+                    openFragment(fragment,"PlacesAndMap");
 
                     break;
                 case R.id.am_notifacation:
                     setVisibleAndGonOfProfile();
-                    openFragment(Notifications.newInstance());
+                    openFragment(Notifications.newInstance(),"Notifacation");
+                    break;
 
 
 
@@ -118,9 +122,9 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
         personalInformation.setVisibility(View.VISIBLE);
     }
 
-    public void openFragment(Fragment myfragment){
+    public void openFragment(Fragment myfragment, String tag){
         getSupportFragmentManager().beginTransaction().replace(R.id.homePage_fremlayot,myfragment)
-                .addToBackStack(null)
+                .addToBackStack(tag)
                 .commit();
 
     }
@@ -128,7 +132,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     @Override
     public void moveToAddPlace() {
         linearLayout.setVisibility(View.GONE);
-        openFragment(new AddPlace());
+        openFragment(new AddPlace(),"AddPlace");
 
     }
 
@@ -192,7 +196,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     public void goToPlaceAndMap() {
         setVisibleAndGonOfProfile();
 
-        openFragment(PlacesAndMap.newInstance(myPlaces));
+        openFragment(PlacesAndMap.newInstance(myPlaces),"PlacesAndMap");
 
     }
 
@@ -207,7 +211,7 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     @Override
     public void onItemClickPlace(Place myPlace) {
         linearLayout.setVisibility(View.GONE);
-        openFragment(ChangePlace.newInstance(myPlaces,myPlace));
+        openFragment(ChangePlace.newInstance(myPlaces,myPlace),"ChangePlace");
 
     }
 
@@ -215,14 +219,39 @@ public class HomePage extends AppCompatActivity implements PlacesAndMap.MoveToAd
     public void onClick(View v) {
         close.setVisibility(View.VISIBLE);
         personalInformation.setVisibility(View.GONE);
-        openFragment(PersonalInformation.newInstance());
+        openFragment(PersonalInformation.newInstance(),"PersonalInformation");
 
     }
     @Override
     public void moveToEditProfile() {
        linearLayout.setVisibility(View.GONE);
-        openFragment(EditProfile.newInstance());
+        openFragment(EditProfile.newInstance(),"EditProfile");
 
 
+    }
+    @Override
+    public void onBackPressed() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        String fragmentTag = fragmentManager.getBackStackEntryAt(fragmentManager.getBackStackEntryCount() - 1).getName();
+
+        switch (fragmentTag) {
+            case "HomeStart":
+                finish();
+
+                break;
+
+            case "PlacesAndMap":
+                fragmentManager.popBackStack ("HomeStart",0);
+
+                break;
+            case "Notifacation":
+                fragmentManager.popBackStack ("HomeStart",0);
+                break;
+
+
+        }
+
+
+        super.onBackPressed();
     }
 }
