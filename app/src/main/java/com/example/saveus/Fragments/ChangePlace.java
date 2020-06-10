@@ -336,6 +336,13 @@ public class ChangePlace extends Fragment implements View.OnClickListener, DateP
         allTime.setText("00:00:00");
         removePlaceOld();
 
+        if(myListener !=null){
+
+            myListener.goToPlaceAndMap();
+        }
+
+
+
 
 
     }
